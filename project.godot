@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Fruit",
 "language": "GDScript",
-"path": "res://Apple.gd"
+"path": "res://Scripts/Apple.gd"
 } ]
 _global_script_class_icons={
 "Fruit": ""
@@ -21,8 +21,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Dionymph"
-run/main_scene="res://Menu.tscn"
-config/icon="res://Player.png"
+run/main_scene="res://Scenes/Menu.tscn"
+config/icon="res://Graphics/Player.png"
 
 [display]
 
