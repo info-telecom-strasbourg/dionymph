@@ -8,6 +8,14 @@
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=6]
 [ext_resource path="res://Graphics/Panel.png" type="Texture" id=7]
 
+[sub_resource type="DynamicFont" id=3]
+size = 23
+outline_size = 1
+outline_color = Color( 0.788235, 0.517647, 0.396078, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 128, 32 )
@@ -15,14 +23,6 @@ region_rect = Rect2( 0, 0, 128, 32 )
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 128, 32 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 27
-outline_size = 1
-outline_color = Color( 0.788235, 0.517647, 0.396078, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 3 )
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -66,24 +66,63 @@ region_rect = Rect2( 0, 0, 448, 320 )
 script = ExtResource( 6 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 384, 240 )
+position = Vector2( 680, 408 )
 texture = ExtResource( 5 )
+offset = Vector2( -296, -168 )
 
-[node name="Button" type="Button" parent="."]
-margin_left = 256.0
-margin_top = 256.0
-margin_right = 512.0
-margin_bottom = 320.0
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
+[node name="ButtonPar" type="Button" parent="."]
+margin_left = 572.762
+margin_top = 415.178
+margin_right = 735.762
+margin_bottom = 459.178
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_hover = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.12549, 0.0784314, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
 keep_pressed_outside = true
-text = "Play"
+text = "Parametres"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonNewG" type="Button" parent="."]
+margin_left = 242.227
+margin_top = 193.492
+margin_right = 498.227
+margin_bottom = 257.492
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
+custom_colors/font_color_hover = Color( 0.12549, 0.0784314, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.12549, 0.0784314, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+keep_pressed_outside = true
+text = "Nouvelle partie"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonCharger" type="Button" parent="."]
+margin_left = 244.346
+margin_top = 292.022
+margin_right = 500.346
+margin_bottom = 356.022
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
+custom_colors/font_color_hover = Color( 0.12549, 0.0784314, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.12549, 0.0784314, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+keep_pressed_outside = true
+text = "Charger"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -125,11 +164,11 @@ margin_left = 120.0
 margin_top = 192.0
 margin_right = 300.0
 margin_bottom = 240.0
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_hover = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.12549, 0.0784314, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 7 )
 text = "Retry"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -140,11 +179,11 @@ margin_left = 336.0
 margin_top = 192.0
 margin_right = 516.0
 margin_bottom = 240.0
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_hover = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.12549, 0.0784314, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 7 )
 text = "Next"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -155,11 +194,11 @@ margin_left = 232.0
 margin_top = 256.0
 margin_right = 412.0
 margin_bottom = 304.0
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_hover = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.12549, 0.0784314, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 7 )
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -169,13 +208,13 @@ __meta__ = {
 anchor_right = 1.0
 margin_top = 56.0
 margin_bottom = 135.0
-custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 0.886275, 0.588235, 0.32549 )
 custom_constants/shadow_offset_x = 2
 custom_constants/line_spacing = 2
 custom_constants/shadow_offset_y = 2
 custom_constants/shadow_as_outline = 0
+custom_fonts/font = SubResource( 8 )
 text = "2132"
 align = 1
 __meta__ = {
@@ -186,13 +225,13 @@ __meta__ = {
 anchor_right = 1.0
 margin_top = 136.0
 margin_bottom = 215.0
-custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 0.886275, 0.588235, 0.32549 )
 custom_constants/shadow_offset_x = 2
 custom_constants/line_spacing = 2
 custom_constants/shadow_offset_y = 2
 custom_constants/shadow_as_outline = 0
+custom_fonts/font = SubResource( 9 )
 text = "Deaths: "
 align = 1
 __meta__ = {
@@ -223,7 +262,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="ButtonPar" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="ButtonNewG" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="ButtonCharger" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Panels/WinPanel/Retry" to="." method="_on_Retry_pressed"]
 [connection signal="pressed" from="Panels/WinPanel/Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="Panels/WinPanel/Menu" to="." method="_on_Menu_pressed"]

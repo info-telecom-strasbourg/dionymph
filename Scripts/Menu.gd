@@ -2,7 +2,7 @@ extends Node2D
 
 var level_node
 var level:int = 1
-var level_select_button_scene = preload("res://LevelSelectButton.tscn")
+var level_select_button_scene = preload("res://Scenes/LevelSelectButton.tscn")
 
 func _ready():
 	for i in 15:
