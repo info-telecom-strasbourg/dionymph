@@ -2,7 +2,7 @@ extends Node2D
 
 var level_node
 var level:int = 1
-var level_select_button_scene = preload("res://LevelSelectButton.tscn")
+var level_select_button_scene = preload("res://Scenes/LevelSelectButton.tscn")
 
 func _ready():
 	for i in 15:
@@ -35,7 +35,7 @@ func _on_Button_pressed():
 	$Title.visible = false
 
 func put_level():
-	level_node = load("res://Level%s.tscn" % level).instance()
+	level_node = load("res://Scenes/Level%s.tscn" % level).instance()
 	add_child(level_node)
 	level_node.connect("level_complete", self, "on_level_complete")
 

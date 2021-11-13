@@ -10,13 +10,13 @@ onready var menu = get_node("/root/Menu")
 
 func _ready():
 	if type == Fruit.RED_APPLE:
-		$Sprite.texture = load("res://RedApple.png")
+		$Sprite.texture = load("res://Graphics/RedApple.png")
 	elif type == Fruit.GREEN_APPLE:
-		$Sprite.texture = load("res://GreenApple.png")
+		$Sprite.texture = load("res://Graphics/GreenApple.png")
 	elif type == Fruit.YELLOW_APPLE:
-		$Sprite.texture = load("res://YellowApple.png")
+		$Sprite.texture = load("res://Graphics/YellowApple.png")
 	elif type == Fruit.ORANGE:
-		$Sprite.texture = load("res://Orange.png")
+		$Sprite.texture = load("res://Graphics/Orange.png")
 
 func _on_Area2D_body_entered(_body):
 	if visible:
