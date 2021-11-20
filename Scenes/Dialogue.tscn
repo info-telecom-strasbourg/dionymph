@@ -1,0 +1,157 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Resources/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/TextFade.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Arrow.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+
+[sub_resource type="RichTextEffect" id=4]
+script = ExtResource( 2 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+uniform float amplitude = 5;
+uniform float frequency = 3.0;
+
+void vertex() {
+  VERTEX += vec2(0, amplitude * sin(frequency * TIME));
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/amplitude = 0.8
+shader_param/frequency = 15.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "FadeIn"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Panel:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 359.285, -0.25, 0, 0.0276344, -20.1559, 336.61, -0.0889508, 0, 0.1, 0.193817 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Panel:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 359, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[node name="Dialogue" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -121.0
+margin_right = -64.0
+margin_bottom = -1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="Panel"]
+margin_left = 24.0
+margin_top = 15.0
+margin_right = 616.0
+margin_bottom = 105.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBox"]
+margin_right = 90.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/HBox"]
+margin_left = 120.0
+margin_right = 592.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/line_separation = 5
+bbcode_enabled = true
+bbcode_text = "[textFade]dfdsdassdsdssdsdsdsadasddfddfdsdsdsdsdadadddfdsassdsdssdsdsdsadsdfddfdsssdsdssadasddfddfdsdassdsdssdsdsdsadasddfdfdsdassdsdssdsdsdsadasddfd[/textFade]"
+text = "dfdsdassdsdssdsdsdsadasddfddfdsdsdsdsdadadddfdsassdsdssdsdsdsadsdfddfdsssdsdssadasddfddfdsdassdsdssdsdsdsadasddfdfdsdassdsdssdsdsdsadasddfd"
+scroll_active = false
+custom_effects = [ SubResource( 4 ) ]
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+material = SubResource( 6 )
+margin_left = 584.0
+margin_top = 92.0
+margin_right = 596.0
+margin_bottom = 108.0
+size_flags_horizontal = 0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="TextureButton" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FadeIn = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[connection signal="pressed" from="Panel/Next" to="." method="_on_Next_pressed"]

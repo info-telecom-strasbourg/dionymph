@@ -9,13 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "Dialogue",
+"language": "GDScript",
+"path": "res://Scripts/Dialogue.gd"
+}, {
 "base": "Area2D",
 "class": "Fruit",
 "language": "GDScript",
 "path": "res://Scripts/Apple.gd"
+}, {
+"base": "RichTextEffect",
+"class": "TextFade",
+"language": "GDScript",
+"path": "res://Scripts/TextFade.gd"
 } ]
 _global_script_class_icons={
-"Fruit": ""
+"Dialogue": "",
+"Fruit": "",
+"TextFade": ""
 }
 
 [application]
