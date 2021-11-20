@@ -40,6 +40,8 @@ config/icon="res://Graphics/Player.png"
 
 window/size/width=768
 window/size/height=480
+window/size/test_width=1536
+window/size/test_height=960
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
