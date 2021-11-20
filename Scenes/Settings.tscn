@@ -1,17 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Text/Arimo-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Graphics/CloseButton.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Settings.gd" type="Script" id=3]
-
-[sub_resource type="DynamicFont" id=2]
-size = 20
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 1 )
-
-[sub_resource type="Theme" id=3]
-default_font = SubResource( 2 )
+[ext_resource path="res://Resources/default_theme.tres" type="Theme" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -22,7 +14,7 @@ font_data = ExtResource( 1 )
 [node name="Settings" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 3 )
+theme = ExtResource( 4 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
