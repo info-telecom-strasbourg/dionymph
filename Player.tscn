@@ -1,0 +1,74 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Graphics/prison/prison mur voté dalle entière.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/prison/prison mur front.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/prison/barreau fer derrière droite.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/prison/prison mur front dalle entière.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/prison/prison mur coté.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/prison/barreau fer devant droite.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/prison/barreau fer devant gauche.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/prison/prison mur coin derrière.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/prison/prison mur coin devant.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/prison/prison mur coin droite.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/prison/prison mur coin gauche.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/prison/barreau fer derrière gauche.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/prison/prison dalle 1.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/prison/prison dalle 2.png" type="Texture" id=14]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BarreauFerDerrièreDroite" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 3 )
+
+[node name="BarreauFerDerrièreGauche" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 12 )
+
+[node name="BarreauFerDevantDroite" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 6 )
+
+[node name="BarreauFerDevantGauche" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 7 )
+
+[node name="PrisonDalle1" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 13 )
+
+[node name="PrisonDalle2" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 14 )
+
+[node name="PrisonMurCoinDerrière" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 8 )
+
+[node name="PrisonMurCoinDevant" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 9 )
+
+[node name="PrisonMurCoinDroite" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 10 )
+
+[node name="PrisonMurCoinGauche" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 11 )
+
+[node name="PrisonMurCoté" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 5 )
+
+[node name="PrisonMurFrontDalleEntière" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 4 )
+
+[node name="PrisonMurFront" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 2 )
+
+[node name="PrisonMurVotéDalleEntière" type="Sprite" parent="."]
+position = Vector2( 50, 27 )
+texture = ExtResource( 1 )
