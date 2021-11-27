@@ -1,19 +1,10 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Graphics/Button.png" type="Texture" id=1]
-[ext_resource path="res://Graphics/Title.png" type="Texture" id=2]
-[ext_resource path="res://Text/Arimo-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Graphics/dionymph_logo.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/ButtonHover.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/Background.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=6]
-
-[sub_resource type="DynamicFont" id=3]
-size = 23
-outline_size = 1
-outline_color = Color( 0.788235, 0.517647, 0.396078, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -22,6 +13,14 @@ region_rect = Rect2( 0, 0, 128, 32 )
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 128, 32 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 23
+outline_size = 1
+outline_color = Color( 0.788235, 0.517647, 0.396078, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -50,14 +49,14 @@ margin_left = 572.762
 margin_top = 415.178
 margin_right = 735.762
 margin_bottom = 459.178
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_hover = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.12549, 0.0784314, 0, 1 )
-custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
 keep_pressed_outside = true
 text = "Parametres"
 __meta__ = {
@@ -69,14 +68,14 @@ margin_left = 242.227
 margin_top = 193.492
 margin_right = 498.227
 margin_bottom = 257.492
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_hover = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.12549, 0.0784314, 0, 1 )
-custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
 keep_pressed_outside = true
 text = "Nouvelle partie"
 __meta__ = {
@@ -88,14 +87,14 @@ margin_left = 244.346
 margin_top = 292.022
 margin_right = 500.346
 margin_bottom = 356.022
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_hover = Color( 0.12549, 0.0784314, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.12549, 0.0784314, 0, 1 )
-custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 2 )
 keep_pressed_outside = true
 text = "Charger"
 __meta__ = {
@@ -103,7 +102,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Sprite" parent="."]
-position = Vector2( 384, 94 )
+position = Vector2( 376.584, 102.476 )
 scale = Vector2( 1.7, 1.7 )
 texture = ExtResource( 2 )
 
