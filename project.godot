@@ -109,6 +109,11 @@ D={
  ]
 }
 
+[locale]
+
+translations=PoolStringArray( "res://Text/Dionymph localization - Sheet1.en.translation", "res://Text/Dionymph localization - Sheet1.fr.translation" )
+locale_filter=[ 1, [ "en", "fr" ] ]
+
 [physics]
 
 common/enable_pause_aware_picking=true
