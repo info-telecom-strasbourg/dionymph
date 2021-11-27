@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Panel.png-a0c36fb01739da1bc1dbae4d1af74ad8.stex"
+path="res://.import/icon.png-725b613ec04d95363c2aab7f9ded4415.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Panel.png"
-dest_files=[ "res://.import/Panel.png-a0c36fb01739da1bc1dbae4d1af74ad8.stex" ]
+source_file="res://Graphics/Dialogue/icon.png"
+dest_files=[ "res://.import/icon.png-725b613ec04d95363c2aab7f9ded4415.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
