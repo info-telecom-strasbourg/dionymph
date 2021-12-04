@@ -4,6 +4,7 @@ extends Control
 signal finished
 signal button_clicked
 
+var b_finished:bool = false
 var num:int
 var progress:int
 onready var RTL:RichTextLabel = $Panel/HBox/RichTextLabel
@@ -39,7 +40,7 @@ func _on_Next_pressed():
 	progress += 1
 	$Panel/Arrow.visible = false
 	if tr("DIA_%s_%s" % [num, progress]) == "DIA_%s_%s" % [num, progress]:
-		emit_signal("finished")
+		b_finished = true
 		$AnimationPlayer.play_backwards("FadeIn")
 	else:
 		emit_signal("button_clicked")
@@ -48,3 +49,8 @@ func _on_Next_pressed():
 
 func _on_ArrowTimer_timeout():
 	$Panel/Arrow.visible = true
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if b_finished:
+		emit_signal("finished")
