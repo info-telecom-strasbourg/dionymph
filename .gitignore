@@ -1,0 +1,20 @@
+#ignorer tous les fichiers (éviter les binaires)
+*
+
+#récupérer les fichiers avec des extensions (dans tous les répertoires)
+!**.*
+
+#ignorer le dossier 'import' propre à l'utilisateur
+.import/
+
+.git/
+
+#ignorer dans tous les dossiers : (regénérés par Godot)
+**.import
+**.translation
+**.png~
+# - binaires
+**.aseprite
+# - fichiers de sauvegarde de Krita
+**.kra
+
