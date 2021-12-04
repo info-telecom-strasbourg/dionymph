@@ -8,6 +8,7 @@ var b_finished:bool = false
 var num:int
 var progress:int
 onready var RTL:RichTextLabel = $Panel/HBox/RichTextLabel
+var st:String
 
 func _ready():
 	$AnimationPlayer.play("RESET")
@@ -17,7 +18,7 @@ func _ready():
 	set_dialogue_text()
 
 func set_dialogue_text():
-	var st:String = tr("DIA_%s_%s" % [num, progress])
+	st = tr("DIA_%s_%s" % [num, progress])
 	var arr:Array = st.split("|")
 	if len(arr) > 2:
 		for param in arr:
@@ -37,20 +38,24 @@ func _process(delta):
 	RTL.visible_characters += 3
 
 func _on_Next_pressed():
-	progress += 1
-	$Panel/Arrow.visible = false
-	if tr("DIA_%s_%s" % [num, progress]) == "DIA_%s_%s" % [num, progress]:
-		b_finished = true
-		$AnimationPlayer.play_backwards("FadeIn")
+	if $Panel/Arrow.visible:
+		progress += 1
+		$Panel/Arrow.visible = false
+		if tr("DIA_%s_%s" % [num, progress]) == "DIA_%s_%s" % [num, progress]:
+			b_finished = true
+			$AnimationPlayer.play_backwards("FadeIn")
+		else:
+			emit_signal("button_clicked")
+			set_dialogue_text()
 	else:
-		emit_signal("button_clicked")
-		set_dialogue_text()
-
+		$Panel/Arrow.visible = true
+		RTL.bbcode_text = st
+		RTL.visible_characters = len(RTL.bbcode_text)
 
 func _on_ArrowTimer_timeout():
 	$Panel/Arrow.visible = true
 
-
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if b_finished:
 		emit_signal("finished")
+		get_parent().remove_child(self)

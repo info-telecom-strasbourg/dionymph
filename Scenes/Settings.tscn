@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Text/Arimo-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Graphics/CloseButton.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Settings.gd" type="Script" id=3]
 [ext_resource path="res://Resources/default_theme.tres" type="Theme" id=4]
+[ext_resource path="res://Graphics/fond-inventaire.jpg" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -20,10 +21,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.776471, 0.545098, 0.356863, 1 )
+texture = ExtResource( 5 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

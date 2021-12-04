@@ -121,6 +121,6 @@ __meta__ = {
 [node name="Panels" type="CanvasLayer" parent="."]
 layer = 2
 
-[connection signal="pressed" from="ButtonPar" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="ButtonPar" to="." method="_on_ButtonPar_pressed"]
 [connection signal="pressed" from="ButtonNewG" to="." method="_on_ButtonNewG_pressed"]
 [connection signal="pressed" from="ButtonCharger" to="." method="_on_Button_pressed"]

@@ -36,6 +36,10 @@ config/name="Dionymph"
 run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://Graphics/Player.png"
 
+[debug]
+
+gdscript/warnings/enable=false
+
 [display]
 
 window/size/width=768

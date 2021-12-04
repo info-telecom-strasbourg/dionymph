@@ -22,6 +22,11 @@ outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_char = 2
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=6]
+outline_size = 2
+outline_color = Color( 0.513726, 0.282353, 0.0156863, 1 )
+font_data = ExtResource( 3 )
+
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 128, 32 )
@@ -33,11 +38,6 @@ region_rect = Rect2( 0, 0, 128, 32 )
 [sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 128, 32 )
-
-[sub_resource type="DynamicFont" id=6]
-outline_size = 2
-outline_color = Color( 0.513726, 0.282353, 0.0156863, 1 )
-font_data = ExtResource( 3 )
 
 [node name="Inventaire" type="Node2D"]
 
@@ -349,9 +349,9 @@ margin_left = 286.0
 margin_top = 13.0
 margin_right = 507.0
 margin_bottom = 54.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.364706, 0.34902, 0.0117647, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "Inventaire"
 align = 1
 valign = 1
@@ -364,9 +364,9 @@ margin_left = -2.0
 margin_top = 429.0
 margin_right = 144.0
 margin_bottom = 482.0
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.364706, 0.34902, 0.0117647, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Quitter : Echap"
 align = 1
 valign = 1
@@ -379,12 +379,12 @@ margin_left = 425.0
 margin_top = 419.0
 margin_right = 550.0
 margin_bottom = 465.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Utiliser"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -395,12 +395,12 @@ margin_left = 600.0
 margin_top = 420.0
 margin_right = 725.0
 margin_bottom = 466.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Jeter"
 __meta__ = {
 "_edit_use_anchors_": false
