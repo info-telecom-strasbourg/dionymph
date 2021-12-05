@@ -1,9 +1,8 @@
-[gd_resource type="TileSet" load_steps=16 format=2]
+[gd_resource type="TileSet" load_steps=14 format=2]
 
 [ext_resource path="res://Graphics/test environnement/sol.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/prison/prison mur voté dalle entière.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/prison/prison mur front.png" type="Texture" id=3]
-[ext_resource path="res://Graphics/prison/barreau fer derrière droite.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/prison/prison mur front dalle entière.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/prison/prison mur coté.png" type="Texture" id=6]
 [ext_resource path="res://Graphics/prison/barreau fer devant droite.png" type="Texture" id=7]
@@ -12,7 +11,6 @@
 [ext_resource path="res://Graphics/prison/prison mur coin devant.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/prison/prison mur coin droite.png" type="Texture" id=11]
 [ext_resource path="res://Graphics/prison/prison mur coin gauche.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/prison/barreau fer derrière gauche.png" type="Texture" id=13]
 [ext_resource path="res://Graphics/prison/prison dalle 1.png" type="Texture" id=14]
 [ext_resource path="res://Graphics/prison/prison dalle 2.png" type="Texture" id=15]
 
@@ -31,8 +29,6 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "BarreauFerDerrièreDroite"
-2/texture = ExtResource( 4 )
 2/name = "MurCoté"
 2/texture = ExtResource( 2 )
 2/tex_offset = Vector2( 0, 0 )
@@ -47,8 +43,6 @@
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
-3/name = "BarreauFerDerrièreGauche"
-3/texture = ExtResource( 13 )
 3/name = "MurFront"
 3/texture = ExtResource( 3 )
 3/tex_offset = Vector2( 0, 0 )
