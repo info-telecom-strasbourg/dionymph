@@ -21,9 +21,13 @@ var roll_vector = Vector2.DOWN # Initialement Player regarde vers le bas
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var blinkAnimationPlayer = $BlinkAnimationPlayer
+onready var hurtbox = $Hurtbox
+onready var PlayerHurtSound = $PlayerHurtSound
 
 func _ready():
 	animationTree.active = true
+	$HitboxPivot/SwordHitbox/CollisionShape2D.disabled = true
 
 func _physics_process(delta):
 	match state:
@@ -66,6 +70,7 @@ func move():
 
 # Actions de l'utilisateur
 func roll_state(delta):
+	hurtbox.start_invincibility(0.1)
 	velocity = roll_vector * ROLL_SPEED # Attribue un vecteur au mvmt roulade
 	animationState.travel("Roll") # Passe de Run/Idle à Roll dans AnimationTree pour jouer l'animation
 	move() # Effectue le déplacement
@@ -74,10 +79,26 @@ func attack_state(delta):
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
 
-# Fin des animations et changements d'états vers Idle/Run
+
+### Fin des animations et changements d'états vers Idle/Run
 func roll_animation_finished():
 	velocity = velocity / 4
 	state = MOVE
 
 func attack_animation_finished():
 	state = MOVE
+
+
+### Hurtbox
+func _on_Hurtbox_invincibility_started():
+	blinkAnimationPlayer.play("start")
+
+func _on_Hurtbox_invincibility_ended():
+	blinkAnimationPlayer.play("stop")
+
+func _on_Hurtbox_area_entered(area):
+	hurtbox.start_invincibility(0.6)
+	hurtbox.create_hitEffect()
+	var playerHurtSound = PlayerHurtSound.instance()
+	get_tree().current_scene.add_child(playerHurtSound)
+	# Pas besoin de lancer car en Autoplay
