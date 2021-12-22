@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const PlayerHurtSound = preload("res://Scenes/PlayerHurtSound.tscn")
+
 # Variables accessibles dans l'onglet à droite en sélectionnant Player.tscn
 export var ACCELERATION = 500
 export var MAX_SPEED = 100
@@ -21,13 +23,14 @@ var roll_vector = Vector2.DOWN # Initialement Player regarde vers le bas
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 onready var hurtbox = $Hurtbox
-onready var PlayerHurtSound = $PlayerHurtSound
 
 func _ready():
 	animationTree.active = true
 	$HitboxPivot/SwordHitbox/CollisionShape2D.disabled = true
+	swordHitbox.knockback_vector = roll_vector
 
 func _physics_process(delta):
 	match state:
@@ -46,6 +49,7 @@ func move_state(delta):
 	
 	if input_vector != Vector2.ZERO: # When moving
 		roll_vector = input_vector # Effectue une roulade dans le même sens que la course
+		swordHitbox.knockback_vector = input_vector
 		animationTree.set("parameters/Idle/blend_position", input_vector)
 		animationTree.set("parameters/Run/blend_position", input_vector)
 		animationTree.set("parameters/Roll/blend_position", input_vector)

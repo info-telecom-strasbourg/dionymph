@@ -1,13 +1,14 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Graphics/Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Shadows/MediumShadow.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/SwordHitbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Hitbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Audio/Sounds/Swipe.wav" type="AudioStream" id=5]
 [ext_resource path="res://Resources/WhiteColorShader.tres" type="Shader" id=6]
 [ext_resource path="res://Audio/Sounds/Evade.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/Hurtbox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/SwordHitbox.gd" type="Script" id=9]
 
 [sub_resource type="ShaderMaterial" id=50]
 shader = ExtResource( 6 )
@@ -758,6 +759,10 @@ graph_offset = Vector2( -321.659, 51.7582 )
 [sub_resource type="CapsuleShape2D" id=48]
 height = 12.0
 
+[sub_resource type="CapsuleShape2D" id=54]
+radius = 5.0
+height = 6.0
+
 [sub_resource type="Animation" id=52]
 length = 0.001
 tracks/0/type = "value"
@@ -805,10 +810,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ false ]
 }
-
-[sub_resource type="CapsuleShape2D" id=54]
-radius = 5.0
-height = 6.0
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -864,26 +865,27 @@ rotation = 1.5708
 
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource( 4 )]
 position = Vector2( 15, 0 )
-collision_layer = 0
 collision_mask = 8
+script = ExtResource( 9 )
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
 visible = false
 shape = SubResource( 48 )
 
-[node name="PlayerHurtSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+[node name="Hurtbox" parent="." instance=ExtResource( 8 )]
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, -4 )
+shape = SubResource( 54 )
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 52 )
 anims/start = SubResource( 51 )
 anims/stop = SubResource( 53 )
 
-[node name="Hurtbox" parent="." instance=ExtResource( 8 )]
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2( 0, -4 )
-shape = SubResource( 54 )
+[node name="PlayerHurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
