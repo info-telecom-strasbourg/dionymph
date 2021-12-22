@@ -28,12 +28,12 @@ func create_hitEffect():
 	main.add_child(effect)
 	effect.global_position = global_position
 
-func _on_Area2D_invincibility_ended():
-	collisionShape.disabled = false
-
 func _on_Hurtbox_invincibility_started():
 	collisionShape.set_deferred("disabled", true)
 
 func _on_Timer_timeout():
 	self.invincible = false # self pour trigger setter
 	monitoring = true
+
+func _on_Hurtbox_invincibility_ended():
+	collisionShape.disabled = false

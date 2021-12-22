@@ -36,6 +36,10 @@ config/name="Dionymph"
 run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://Graphics/Player.png"
 
+[autoload]
+
+PlayerStats="*res://Scenes/PlayerStats.tscn"
+
 [debug]
 
 gdscript/warnings/enable=false

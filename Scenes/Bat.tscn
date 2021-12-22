@@ -112,6 +112,7 @@ playing = true
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 8 )
 
 [node name="Stats" parent="." instance=ExtResource( 3 )]
@@ -128,12 +129,14 @@ shape = SubResource( 9 )
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
 position = Vector2( 0, -13 )
 shape = SubResource( 10 )
 
 [node name="SoftCollision" parent="." instance=ExtResource( 7 )]
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
+visible = false
 shape = SubResource( 11 )
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 8 )]
@@ -141,6 +144,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+visible = false
 shape = SubResource( 12 )
 
 [node name="WanderController" parent="." instance=ExtResource( 10 )]

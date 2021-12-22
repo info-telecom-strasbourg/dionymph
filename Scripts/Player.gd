@@ -18,7 +18,7 @@ enum {
 var state = MOVE
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN # Initialement Player regarde vers le bas
-#var stats = $PlayerStats # Singleton Autoload
+var stats = PlayerStats
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
@@ -28,6 +28,9 @@ onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 onready var hurtbox = $Hurtbox
 
 func _ready():
+	randomize() # Permet de forcer le jeu à générer un seed pour outpass le pseudo random 
+				# dans tous le code et ce dès le début de chaque scène où il y a Player
+	stats.connect("no_health", self, "queue_free")
 	animationTree.active = true
 	$HitboxPivot/SwordHitbox/CollisionShape2D.disabled = true
 	swordHitbox.knockback_vector = roll_vector
@@ -101,6 +104,7 @@ func _on_Hurtbox_invincibility_ended():
 	blinkAnimationPlayer.play("stop")
 
 func _on_Hurtbox_area_entered(area):
+	stats.health -= area.damage
 	hurtbox.start_invincibility(0.6)
 	hurtbox.create_hitEffect()
 	var playerHurtSound = PlayerHurtSound.instance()
