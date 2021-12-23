@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/Tree.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/SmallHouse.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/InsideSmallHouse.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Doge.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=2]
 0/name = "DirtTileset.png 0"
@@ -527,6 +528,9 @@ position = Vector2( -16, 96 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
+
+[node name="Doge" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 664, 56 )
 
 [node name="Houses" type="YSort" parent="YSort"]
 
