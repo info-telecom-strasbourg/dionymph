@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Graphics/Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Shadows/MediumShadow.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Audio/Sounds/Evade.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/Hurtbox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/SwordHitbox.gd" type="Script" id=9]
+[ext_resource path="res://Graphics/Buttons/KeyEPressed.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Buttons/KeyE.png" type="Texture" id=11]
 
 [sub_resource type="ShaderMaterial" id=50]
 shader = ExtResource( 6 )
@@ -811,6 +813,37 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="Animation" id=55]
+resource_name = "KeyPrompt"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("InteractionKey:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ), ExtResource( 10 ) ]
+}
+
+[sub_resource type="Animation" id=56]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("InteractionKey:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 10 ) ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 3 )
@@ -887,9 +920,19 @@ anims/stop = SubResource( 53 )
 [node name="PlayerHurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
+[node name="InteractionKey" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -29 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 10 )
+
+[node name="KeyPrompt" type="AnimationPlayer" parent="."]
+autoplay = "KeyPrompt"
+anims/KeyPrompt = SubResource( 55 )
+anims/RESET = SubResource( 56 )
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
-[connection signal="invincibility_ended" from="Hurtbox" to="Hurtbox" method="_on_Hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]
 
 [editable path="HitboxPivot/SwordHitbox"]

@@ -110,3 +110,27 @@ func _on_Hurtbox_area_entered(area):
 	var playerHurtSound = PlayerHurtSound.instance()
 	get_tree().current_scene.add_child(playerHurtSound)
 	# Pas besoin de lancer car en Autoplay
+
+
+
+### Key Prompt - Enter house
+
+var house = null setget set_house
+
+func set_house(new_house):
+	if new_house:
+		$InteractionKey.show()
+		$KeyPrompt.play("KeyPrompt")
+	else:
+		$InteractionKey.hide()
+		$KeyPrompt.stop()
+	
+	house = new_house
+
+func _unhandled_input(event):
+	if event is InputEventKey and event.is_action_pressed("interaction") and house != null:
+		if house.inside_house == null :
+			print("No inside_house loaded, or empty")
+		else:
+			Global.player_pos = global_position
+			house.enter()
