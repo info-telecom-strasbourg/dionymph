@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scenes/SmallHouse.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/InsideSmallHouse.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Doge.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/SceneTransition.tscn" type="PackedScene" id=12]
 
 [sub_resource type="TileSet" id=2]
 0/name = "DirtTileset.png 0"
@@ -580,6 +581,10 @@ position = Vector2( 112, 152 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToPrison"]
 position = Vector2( -16, 96 )
 shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" parent="CanvasLayer" instance=ExtResource( 12 )]
 
 [connection signal="body_entered" from="ToPrison" to="." method="_on_ToPrison_body_entered"]
 [connection signal="body_exited" from="ToPrison" to="." method="_on_ToPrison_body_exited"]

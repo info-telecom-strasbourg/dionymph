@@ -134,3 +134,4 @@ func _unhandled_input(event):
 		else:
 			Global.player_pos = global_position
 			house.enter()
+

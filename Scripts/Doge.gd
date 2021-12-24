@@ -32,13 +32,16 @@ func _physics_process(delta):
 			if player != null:
 				animationTree.set("parameters/Idle/blend_position", velocity)
 				animationTree.set("parameters/Run/blend_position", velocity)
+				animationTree.set("parameters/Sit/blend_position", velocity)
 				if player_proche != null:
 					state = IDLE
+					$Timer.start(2)
 				else:
 					accelerate_towards_point(player.global_position, delta)
 					animationState.travel("Run")
 			else:
 				state = IDLE
+				$Timer.start(2)
 	
 	velocity = move_and_slide(velocity)
 
@@ -63,3 +66,6 @@ func _on_PlayerDetection_body_entered(body):
 
 func _on_PlayerDetection_body_exited(body):
 	player_proche = null
+
+func _on_Timer_timeout():
+	animationState.travel("Sit")
