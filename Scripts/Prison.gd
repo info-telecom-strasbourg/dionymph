@@ -5,8 +5,8 @@ var sceneFader
 func _ready():
 	sceneFader = find_node("ColorRect")
 
-func _process(delta):
-	$Camera2D.position = $Player.position
+#func _process(delta):
+#	$Camera2D.position = $Ysort/Player.position
 
 var entered = false
 
