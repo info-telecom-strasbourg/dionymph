@@ -4,6 +4,13 @@ CHARGER_PARTIE,Charger partie,Load game
 PARAMETRES,Paramètres,Settings
 MUSIQUE,Musique,Music
 SONS,Sons,Sounds
-DIA_1_1,|align=left|img=icon.png|Ou suis-je ?,
-DIA_1_2,|align=right|img=Player.png|Tu te trouves dans la prison de TPS. Suis Michel il pourra aidera,
-DIA_1_3,|align=left|img=icon.png|OK,
+DIA_0_1_1,*gling* *bang*,
+DIA_0_1_2,Tiens tu seras bien au frais ici.,
+DIA_0_2_1,C'est bon c'est bon voilà ton repas.,
+DIA_0_3_1,Laisse moi tranquille j'ai pas le temps !,
+DIA_0_4_1,Alors tu viens d'où toi ?,
+DIA_0_4_2,Je suis originaire viens du pays aquatique je me suis fait arrếter pour traffique de sardines.,
+DIA_0_5_1,Salut tu es qui ?,
+DIA_0_5_2,Je m'appelle Ducknuk je viens de la contrée de l'air. Je me suis fait parquer ici pour exes de vitesse sur la voie aerienne.,
+MONDE_DIO,Monde de Dionymph,
+CHATEAU_ARK,Château d'Arcknot,

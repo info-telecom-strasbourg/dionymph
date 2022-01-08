@@ -5,6 +5,7 @@ signal finished
 signal button_clicked
 
 var b_finished:bool = false
+var world:int
 var num:int
 var progress:int
 onready var RTL:RichTextLabel = $Panel/HBox/RichTextLabel
@@ -18,8 +19,12 @@ func _ready():
 	set_dialogue_text()
 
 func set_dialogue_text():
-	st = tr("DIA_%s_%s" % [num, progress])
+	st = tr("DIA_%s_%s_%s" % [world, num, progress])
+	$Panel.rect_size.x = 640
 	var arr:Array = st.split("|")
+	var align_left = true
+	$Panel/HBox2/PortraitBig.texture = null
+	$Panel/HBox/Portrait.texture = null
 	if len(arr) > 2:
 		for param in arr:
 			var arr2:Array = param.split("=")
@@ -28,8 +33,19 @@ func set_dialogue_text():
 					$Panel/HBox.move_child($Panel/HBox/Portrait, 0)
 				elif arr2[1] == "right":
 					$Panel/HBox.move_child($Panel/HBox/Portrait, 1)
+					align_left = false
 			elif arr2[0] == "img":
 				$Panel/HBox/Portrait.texture = load("res://Graphics/Dialogue/%s" % arr2[1])
+			elif arr2[0] == "bigimg":
+				$Panel/HBox2/PortraitBig.texture = load("res://Graphics/Dialogue/%s" % arr2[1])
+				if align_left:
+					$Panel/HBox2.alignment = BoxContainer.ALIGN_BEGIN
+				else:
+					$Panel/HBox2.alignment = BoxContainer.ALIGN_END
+	if $Panel/HBox/Portrait.texture:
+		$Panel/HBox/Portrait.visible = true
+	else:
+		$Panel/HBox/Portrait.visible = false
 	st = arr[-1]
 	RTL.bbcode_text = "[textFade]" + st
 	$ArrowTimer.start((len(RTL.bbcode_text) / 15.0) / 5.0)
@@ -41,7 +57,7 @@ func _on_Next_pressed():
 	if $Panel/Arrow.visible:
 		progress += 1
 		$Panel/Arrow.visible = false
-		if tr("DIA_%s_%s" % [num, progress]) == "DIA_%s_%s" % [num, progress]:
+		if tr("DIA_%s_%s_%s" % [world, num, progress]) == "DIA_%s_%s_%s" % [world, num, progress]:
 			b_finished = true
 			$AnimationPlayer.play_backwards("FadeIn")
 		else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Inventaire-slot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/fond-inventaire.jpg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Graphics/Button.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/ButtonHover.png" type="Texture" id=6]
 [ext_resource path="res://Graphics/Slot2.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/CloseButton.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 27
@@ -39,7 +40,12 @@ region_rect = Rect2( 0, 0, 128, 32 )
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 128, 32 )
 
-[node name="Inventaire" type="Node2D"]
+[node name="Inventaire" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Fond" type="TextureRect" parent="."]
 margin_top = 2.1189
@@ -50,6 +56,8 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CloseButton" parent="." instance=ExtResource( 8 )]
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 297.119
