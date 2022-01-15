@@ -1,7 +1,7 @@
 extends Node2D
 
+onready var game = get_node("/root/Game")
 var sceneFader
-var curr_NPC:int = -1
 
 func _ready():
 	sceneFader = find_node("ColorRect")
@@ -22,10 +22,18 @@ func _on_ToWorld_body_exited(body):
 	entered = true
 
 func _input(event):
-	if Input.is_action_just_released("interaction") and curr_NPC != -1:
-		var dia:Dialogue = preload("res://Scenes/Dialogue.tscn").instance()
-		dia.world = 0
-		dia.num = curr_NPC
-		add_child(dia)
-		dia.connect("finished", self, "start_game")
-		print("A")
+	if Input.is_action_just_released("interaction") and game.curr_NPC != -1:
+		if $CanvasLayer/Talk.modulate.a == 1.0:
+			$CanvasLayer/Talk/AnimationPlayer.play_backwards("TalkAnim")
+
+
+func _on_Player_interact(id:int, txt:String):
+	game.curr_NPC = id
+	$CanvasLayer/Talk/HBox/Label.text = txt
+	$CanvasLayer/Talk/AnimationPlayer.play("TalkAnim")
+
+
+func _on_Player_interact_finish():
+	game.curr_NPC = -1
+	if $CanvasLayer/Talk.modulate.a == 1.0:
+		$CanvasLayer/Talk/AnimationPlayer.play_backwards("TalkAnim")

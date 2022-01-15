@@ -6,7 +6,3 @@ export var NPC_name:String
 
 func _ready():
 	pass
-
-func _on_InteractArea_body_entered(body):
-	if body is Player:
-		game.curr_NPC = id

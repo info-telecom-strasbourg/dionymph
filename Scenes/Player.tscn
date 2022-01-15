@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Graphics/Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Shadows/MediumShadow.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scenes/SwordHitbox.gd" type="Script" id=9]
 [ext_resource path="res://Graphics/Buttons/KeyEPressed.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/Buttons/KeyE.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/Effects/spotlight_1.png" type="Texture" id=12]
 
 [sub_resource type="ShaderMaterial" id=50]
 shader = ExtResource( 6 )
@@ -844,9 +845,17 @@ tracks/0/keys = {
 "values": [ ExtResource( 10 ) ]
 }
 
+[sub_resource type="CircleShape2D" id=57]
+radius = 13.5321
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 12 )
+mode = 2
+shadow_enabled = true
 
 [node name="ShadowSprite" type="Sprite" parent="."]
 position = Vector2( 0, 2 )
@@ -930,9 +939,17 @@ autoplay = "KeyPrompt"
 anims/KeyPrompt = SubResource( 55 )
 anims/RESET = SubResource( 56 )
 
+[node name="NPCHitbox" type="Area2D" parent="."]
+position = Vector2( 0.23597, -3.06759 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCHitbox"]
+shape = SubResource( 57 )
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]
+[connection signal="area_entered" from="NPCHitbox" to="." method="_on_NPCHitbox_area_entered"]
+[connection signal="area_exited" from="NPCHitbox" to="." method="_on_NPCHitbox_area_exited"]
 
 [editable path="HitboxPivot/SwordHitbox"]
 [editable path="Hurtbox"]
