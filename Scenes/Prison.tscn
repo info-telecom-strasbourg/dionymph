@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Resources/PrisonTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,53 @@
 [ext_resource path="res://Scripts/Prison.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/SceneTransition.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/PNJGuardePrison.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Graphics/prison/prison 2D/prison dalle 1.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/prison/prison 2D/grille fer.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/prison/prison 2D/prison dalle 2.png" type="Texture" id=11]
+
+[sub_resource type="TileSet" id=2]
+0/name = "grille fer.png 0"
+0/texture = ExtResource( 10 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 7, 24, 37 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "prison dalle 1.png 1"
+1/texture = ExtResource( 9 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "prison dalle 2.png 2"
+2/texture = ExtResource( 11 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 16, 16 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23, 10 )
@@ -32,6 +79,14 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 24, 12 )
 format = 1
 tile_data = PoolIntArray( -851962, 8, 0, -851961, 12, 0, -851960, 12, 0, -851959, 12, 0, -851958, 12, 0, -851957, 12, 0, -851956, 12, 0, -851955, 12, 0, -851954, 12, 0, -851953, 12, 0, -851950, 8, 0, -851949, 12, 0, -851948, 12, 0, -851947, 12, 0, -851946, 12, 0, -851945, 12, 0, -851944, 12, 0, -851943, 12, 0, -851942, 12, 0, -851941, 12, 0, -851940, 12, 0, -786426, 14, 0, -786414, 14, 0, -720890, 14, 0, -720878, 14, 0, -655354, 14, 0, -655342, 14, 0, -589818, 14, 0, -589806, 14, 0, -524282, 14, 0, -524270, 14, 0, -458746, 14, 0, -458734, 14, 0, -458718, 8, 0, -458717, 12, 0, -458716, 12, 0, -458715, 12, 0, -458714, 12, 0, -458713, 12, 0, -458712, 12, 0, -458711, 12, 0, -458710, 12, 0, -393210, 14, 0, -393182, 14, 0, -327646, 14, 0, -262141, 12, 0, -262140, 12, 0, -262139, 12, 0, -262138, 12, 0, -262137, 12, 0, -262136, 12, 0, -262135, 10, 0, -262134, 5, 0, -262133, 5, 0, -262132, 5, 0, -262131, 12, 0, -262130, 12, 0, -262129, 12, 0, -262128, 12, 0, -262127, 12, 0, -262126, 12, 0, -262125, 12, 0, -262124, 12, 0, -262123, 10, 0, -262122, 5, 0, -262121, 5, 0, -262120, 5, 0, -262119, 12, 0, -262118, 12, 0, -262117, 12, 0, -262116, 12, 0, -262115, 12, 0, -262114, 12, 0, -262113, 12, 0, -262110, 14, 0, -196577, 11, 0, -196576, 12, 0, -196575, 12, 0, -196574, 9, 0, -131040, 4, 0, -65504, 4, 0, 32, 4, 0, 65568, 4, 0, 262150, 8, 0, 262151, 12, 0, 262152, 12, 0, 262153, 10, 0, 262154, 5, 0, 262155, 5, 0, 262156, 5, 0, 262157, 12, 0, 262158, 12, 0, 262159, 12, 0, 262160, 12, 0, 262162, 8, 0, 262163, 12, 0, 262164, 12, 0, 262165, 10, 0, 262166, 5, 0, 262167, 5, 0, 262168, 5, 0, 262169, 12, 0, 262170, 12, 0, 262171, 12, 0, 327686, 14, 0, 327698, 14, 0, 393222, 14, 0, 393234, 14, 0, 458758, 14, 0, 458770, 14, 0, 524294, 14, 0, 524306, 14, 0, 589830, 14, 0, 589842, 14, 0, 655366, 14, 0, 655378, 14, 0, 720902, 14, 0, 720914, 14, 0, 786438, 14, 0, 786450, 14, 0 )
+
+[node name="Mur2D" type="TileMap" parent="."]
+position = Vector2( 1, 1 )
+tile_set = SubResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_tile_origin = 2
+collision_mask = 0
+format = 1
 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( 504, 289 )
