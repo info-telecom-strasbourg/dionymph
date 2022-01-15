@@ -4,6 +4,8 @@ var play:bool = false
 var c_sv:int = -1
 enum Worlds {PRISON}
 var curr_world:int = -1
+var curr_NPC:int = -1
+var NPC_dialogue:Dialogue
 
 func _ready():
 	TranslationServer.set_locale("fr")
@@ -24,15 +26,20 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func remove_intro(anim:String, intro:Node2D):
 	remove_child(intro)
 	intro.queue_free()
-	var dia:Dialogue = preload("res://Scenes/Dialogue.tscn").instance()
-	dia.world = 0
-	dia.num = 1
-	dia.progress = 1
-	add_child(dia)
-	dia.connect("finished", self, "start_game")
+	add_dia(0, 1, "start_game")
 
+func add_dia(world:int, num:int, finished_event:String = ""):
+	if is_instance_valid(NPC_dialogue):
+		return
+	NPC_dialogue = preload("res://Scenes/Dialogue.tscn").instance()
+	NPC_dialogue.world = world
+	NPC_dialogue.num = num
+	$Dialogue.add_child(NPC_dialogue)
+	if finished_event != "":
+		NPC_dialogue.connect("finished", self, finished_event)
+	
 func start_game():
-	var prison = preload("res://Scenes/Prison.tscn").instance()
+	var prison = preload("res://Scenes/Prison2D.tscn").instance()
 	prison.modulate.a = 0.0
 	add_child(prison)
 	var tween = Tween.new()
@@ -62,3 +69,7 @@ func load_game(slot:int):
 	for key in save_info:
 		if key in self:
 			self[key] = save_info[key]
+
+func _input(event):
+	if Input.is_action_just_released("interaction") and curr_NPC != -1:
+		add_dia(0, curr_NPC)

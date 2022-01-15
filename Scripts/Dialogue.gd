@@ -8,10 +8,11 @@ var b_finished:bool = false
 var world:int
 var num:int
 var progress:int
-onready var RTL:RichTextLabel = $Panel/HBox/RichTextLabel
+onready var RTL:RichTextLabel = $Panel/RichTextLabel
 var st:String
 
 func _ready():
+	progress = 1
 	$AnimationPlayer.play("RESET")
 	$AnimationPlayer.play("FadeIn")
 	RTL.visible_characters = 0
@@ -23,29 +24,18 @@ func set_dialogue_text():
 	$Panel.rect_size.x = 640
 	var arr:Array = st.split("|")
 	var align_left = true
-	$Panel/HBox2/PortraitBig.texture = null
-	$Panel/HBox/Portrait.texture = null
+	$Panel/VBox/Portrait.texture = null
 	if len(arr) > 2:
 		for param in arr:
 			var arr2:Array = param.split("=")
-			if arr2[0] == "align":
-				if arr2[1] == "left":
-					$Panel/HBox.move_child($Panel/HBox/Portrait, 0)
-				elif arr2[1] == "right":
-					$Panel/HBox.move_child($Panel/HBox/Portrait, 1)
-					align_left = false
-			elif arr2[0] == "img":
-				$Panel/HBox/Portrait.texture = load("res://Graphics/Dialogue/%s" % arr2[1])
-			elif arr2[0] == "bigimg":
-				$Panel/HBox2/PortraitBig.texture = load("res://Graphics/Dialogue/%s" % arr2[1])
-				if align_left:
-					$Panel/HBox2.alignment = BoxContainer.ALIGN_BEGIN
-				else:
-					$Panel/HBox2.alignment = BoxContainer.ALIGN_END
-	if $Panel/HBox/Portrait.texture:
-		$Panel/HBox/Portrait.visible = true
+			if arr2[0] == "img":
+				$Panel/VBox/Portrait.texture = load("res://Graphics/Dialogue/%s" % arr2[1])
+			elif arr2[0] == "name":
+				$Panel/VBox/Name.text = arr2[1]
+	if $Panel/VBox/Portrait.texture:
+		$Panel/VBox/Portrait.visible = true
 	else:
-		$Panel/HBox/Portrait.visible = false
+		$Panel/VBox/Portrait.visible = false
 	st = arr[-1]
 	RTL.bbcode_text = "[textFade]" + st
 	$ArrowTimer.start((len(RTL.bbcode_text) / 15.0) / 5.0)
@@ -75,3 +65,4 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if b_finished:
 		emit_signal("finished")
 		get_parent().remove_child(self)
+		queue_free()

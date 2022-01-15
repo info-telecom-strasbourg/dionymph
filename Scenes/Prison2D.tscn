@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/SceneTransition.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/HealthUI.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Graphics/prison/prison 2D/pile de sac 2.png" type="Texture" id=12]
 [ext_resource path="res://Graphics/prison/prison 2D/tonneau.png" type="Texture" id=13]
 [ext_resource path="res://Graphics/prison/prison 2D/boite bois.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/NPC.tscn" type="PackedScene" id=15]
 
 [sub_resource type="TileSet" id=1]
 0/name = "prison dalle 1.png 0"
@@ -316,13 +317,19 @@ tile_set = SubResource( 13 )
 cell_size = Vector2( 8, 8 )
 cell_tile_origin = 2
 cell_y_sort = true
+centered_textures = true
 format = 1
-tile_data = PoolIntArray( -1441770, 4, 0, -1310665, 4, 0, -1310652, 4, 0, -1048524, 1, 0, -262152, 1, 0, -8, 1, 0, 262197, 3, 0, 655429, 2, 0, 720948, 3, 0, 786501, 2, 0, 917526, 4, 0, 917556, 3, 0 )
+tile_data = PoolIntArray( -1441770, 4, 0, -1310665, 4, 0, -1310652, 4, 0, -982986, 1, 0, -196615, 1, 0, -196604, 3, 0, 131065, 1, 0, 786501, 2, 0, 852022, 1, 0, 917526, 4, 0, 917573, 2, 0 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
+
+[node name="NPC1" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 237.51, -8.37357 )
+id = 3
+NPC_name = "Michel"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
