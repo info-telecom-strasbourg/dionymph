@@ -34,6 +34,7 @@ _global_script_class_icons={
 
 config/name="Dionymph"
 run/main_scene="res://Scenes/Game.tscn"
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://Graphics/Player.png"
 
 [autoload]
@@ -190,5 +191,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_clear_color=Color( 0.239216, 0.227451, 0.227451, 1 )
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

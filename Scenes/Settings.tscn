@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Text/Arimo-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Graphics/CloseButton.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/CloseButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Settings.gd" type="Script" id=3]
 [ext_resource path="res://Resources/default_theme.tres" type="Theme" id=4]
 [ext_resource path="res://Graphics/fond-inventaire.jpg" type="Texture" id=5]
@@ -70,17 +70,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CloseButton" type="TextureButton" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -40.0
-margin_bottom = 40.0
-texture_normal = ExtResource( 2 )
-expand = true
-stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CloseButton" parent="." instance=ExtResource( 2 )]
 
 [node name="MusicSlider" type="HSlider" parent="."]
 margin_left = 208.0
@@ -96,5 +86,3 @@ margin_bottom = 160.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]

@@ -1,11 +1,126 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Graphics/Button.png" type="Texture" id=1]
-[ext_resource path="res://Graphics/Title.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/dionymph_logo.png" type="Texture" id=2]
 [ext_resource path="res://Text/Arimo-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Graphics/ButtonHover.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/Background.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=6]
+[ext_resource path="res://Graphics/ITS.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/World/GrassBackground.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/World/DirtTileset.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/World/CliffTileset.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Shadows/MediumShadow.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/Player/Player.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/Bush.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Tree.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Bat.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Graphics/Player/Shiba.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/Effects/leaf.png" type="Texture" id=17]
+
+[sub_resource type="TileSet" id=10]
+0/name = "CliffTileset.png 0"
+0/texture = ExtResource( 10 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 32, 0, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="TileSet" id=11]
+0/name = "DirtTileset.png 0"
+0/texture = ExtResource( 9 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 16, 0, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 16 )
+region = Rect2( 128, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 16 )
+region = Rect2( 256, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 16 )
+region = Rect2( 384, 128, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 12 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 12 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 12 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 12 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 12 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.45
+} ]
+
+[sub_resource type="ParticlesMaterial" id=24]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 225, 1 )
+flag_disable_z = true
+gravity = Vector3( -10, 1, 0 )
+initial_velocity = -50.0
+initial_velocity_random = 0.2
+angular_velocity = 30.0
+angular_velocity_random = 0.75
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 5.0
+radial_accel_random = 0.5
+angle = 35.0
+angle_random = 0.74
 
 [sub_resource type="DynamicFont" id=3]
 size = 23
@@ -37,13 +152,329 @@ void fragment() {
 shader = SubResource( 4 )
 shader_param/amount = 2.0
 
+[sub_resource type="Animation" id=6]
+resource_name = "MenuAnim"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Title:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 90.46, -0.19185, 0, 0.25, 0, 103.856, -0.25, 0, 0.1, -12.7261 ),
+"times": PoolRealArray( -0.2, 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ButtonNewG:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("ButtonNewG:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 198.597, -0.25, 0, 0.1, -2.65843, 193.492, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.2, 0.6 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ButtonCharger:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( -0.2, 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("ButtonCharger:rect_position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 296.224, -0.25, 0, 0.1, -2.09821, 292.022, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 0.7 )
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ButtonPar:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( -0.1, 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Its:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Background:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("BackgroundAnim:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("AnimatedSprite:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("ShadowSprite:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Particles2D:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BackgroundAnim:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShadowSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Particles2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "Background"
+length = 15.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BackgroundAnim:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1440, 0 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BackgroundAnim:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
 [node name="Menu" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 680, 408 )
+position = Vector2( 892.176, 496.16 )
+scale = Vector2( 1.31619, 1.22 )
 texture = ExtResource( 5 )
 offset = Vector2( -296, -168 )
+
+[node name="BackgroundAnim" type="Node2D" parent="."]
+
+[node name="Grass" type="Sprite" parent="BackgroundAnim"]
+position = Vector2( 1127.88, 448.84 )
+scale = Vector2( 1.50423, 1.5 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1500, 64 )
+
+[node name="Cliff" type="TileMap" parent="BackgroundAnim"]
+position = Vector2( 0, 15 )
+scale = Vector2( 1.5, 1.5 )
+tile_set = SubResource( 10 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524327, 0, 0, 524328, 0, 0, 524329, 0, 0, 524330, 0, 0, 524331, 0, 0, 524332, 0, 0, 524333, 0, 0, 524334, 0, 0 )
+
+[node name="DirtPath" type="TileMap" parent="BackgroundAnim"]
+scale = Vector2( 2, 2 )
+tile_set = SubResource( 11 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 0, 0, 917534, 0, 0, 917535, 0, 0, 917536, 0, 0, 917537, 0, 0, 917538, 0, 0, 917539, 0, 0, 917540, 0, 0, 917541, 0, 0, 917542, 0, 0, 917543, 0, 0, 917544, 0, 0, 917545, 0, 0, 917546, 0, 0, 917547, 0, 0, 917548, 0, 0, 917549, 0, 0, 917550, 0, 0, 917551, 0, 0, 917552, 0, 0, 917553, 0, 0, 917554, 0, 0, 917555, 0, 0, 917556, 0, 0, 917557, 0, 0, 917558, 0, 0, 917559, 0, 0, 917560, 0, 0, 917561, 0, 0, 917562, 0, 0, 917563, 0, 0, 917564, 0, 0, 917565, 0, 0, 917566, 0, 0, 917567, 0, 0, 917568, 0, 0, 917569, 0, 0, 917570, 0, 0, 917571, 0, 0, 917572, 0, 0, 917573, 0, 0, 917574, 0, 0 )
+
+[node name="Bat" parent="BackgroundAnim" instance=ExtResource( 15 )]
+position = Vector2( 922.069, 431.672 )
+scale = Vector2( 2, 2 )
+
+[node name="Bat2" parent="BackgroundAnim" instance=ExtResource( 15 )]
+position = Vector2( 1372.34, 421.315 )
+scale = Vector2( 2, 2 )
+
+[node name="Doge" type="AnimatedSprite" parent="BackgroundAnim"]
+position = Vector2( 998.797, 405.588 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 23 )
+playing = true
+
+[node name="Tree" parent="BackgroundAnim" instance=ExtResource( 14 )]
+position = Vector2( 160, 416 )
+scale = Vector2( 3, 3 )
+
+[node name="Tree2" parent="BackgroundAnim" instance=ExtResource( 14 )]
+position = Vector2( 1600, 416 )
+scale = Vector2( 3, 3 )
+
+[node name="Bush" parent="BackgroundAnim" instance=ExtResource( 13 )]
+position = Vector2( 608, 416 )
+scale = Vector2( 2, 2 )
+
+[node name="Bush2" parent="BackgroundAnim" instance=ExtResource( 13 )]
+position = Vector2( 2048, 416 )
+scale = Vector2( 2, 2 )
+
+[node name="Bush3" parent="BackgroundAnim" instance=ExtResource( 13 )]
+position = Vector2( 1297.6, 432 )
+scale = Vector2( 2, 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 376, 432 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 18 )
+frame = 5
+playing = true
+
+[node name="ShadowSprite" type="Sprite" parent="."]
+position = Vector2( 367.401, 463.791 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 11 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 768, 216 )
+amount = 20
+lifetime = 12.0
+preprocess = 20.0
+process_material = SubResource( 24 )
+texture = ExtResource( 17 )
 
 [node name="ButtonPar" type="Button" parent="."]
 margin_left = 572.762
@@ -103,7 +534,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Sprite" parent="."]
-position = Vector2( 384, 94 )
+position = Vector2( 368, 103.856 )
 scale = Vector2( 1.7, 1.7 )
 texture = ExtResource( 2 )
 
@@ -120,6 +551,21 @@ __meta__ = {
 
 [node name="Panels" type="CanvasLayer" parent="."]
 layer = 2
+
+[node name="Its" type="Sprite" parent="."]
+position = Vector2( 43.7642, 37.6296 )
+scale = Vector2( 0.0339294, 0.0339294 )
+texture = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+anims/MenuAnim = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="BackgroundAnimation" type="AnimationPlayer" parent="."]
+autoplay = "Background"
+anims/Background = SubResource( 25 )
+anims/RESET = SubResource( 26 )
 
 [connection signal="pressed" from="ButtonPar" to="." method="_on_ButtonPar_pressed"]
 [connection signal="pressed" from="ButtonNewG" to="." method="_on_ButtonNewG_pressed"]

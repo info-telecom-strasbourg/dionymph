@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+onready var game = get_node("/root/Game")
+signal interact
+signal interact_finish
 const PlayerHurtSound = preload("res://Scenes/PlayerHurtSound.tscn")
 
 # Variables accessibles dans l'onglet à droite en sélectionnant Player.tscn
@@ -45,6 +48,8 @@ func _physics_process(delta):
 			attack_state(delta)
 
 func move_state(delta):
+	if is_instance_valid(game.NPC_dialogue):
+		return
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -135,3 +140,11 @@ func _unhandled_input(event):
 			Global.player_pos = global_position
 			house.enter()
 
+func _on_NPCHitbox_area_entered(area):
+	if area.get_parent() is KinematicBody2D:
+		emit_signal("interact", area.get_parent().id, tr("PARLER"))
+	else:
+		emit_signal("interact", area.id, tr("OUVRIR"))
+
+func _on_NPCHitbox_area_exited(area):
+	emit_signal("interact_finish")
