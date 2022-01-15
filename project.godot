@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Apple.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "Player",
-"language": "GDScript",
-"path": "res://Scripts/Player.gd"
-}, {
 "base": "RichTextEffect",
 "class": "TextFade",
 "language": "GDScript",
@@ -32,7 +27,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Dialogue": "",
 "Fruit": "",
-"Player": "",
 "TextFade": ""
 }
 
