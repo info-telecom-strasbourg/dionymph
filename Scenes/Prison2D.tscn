@@ -15,7 +15,7 @@
 [ext_resource path="res://Graphics/prison/prison 2D/tonneau.png" type="Texture" id=13]
 [ext_resource path="res://Graphics/prison/prison 2D/boite bois.png" type="Texture" id=14]
 [ext_resource path="res://Scenes/NPC.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Graphics/UI/E_key.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/Buttons/KeyE.png" type="Texture" id=16]
 [ext_resource path="res://Scripts/Interactable.gd" type="Script" id=17]
 
 [sub_resource type="TileSet" id=1]
@@ -391,6 +391,11 @@ NPC_name = "Michel"
 [node name="NPC2" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( 493.945, 96.0944 )
 id = 4
+NPC_name = "Ducknuk"
+
+[node name="NPC3" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 116, -12 )
+id = 6
 NPC_name = "Ducknuk"
 
 [node name="Open" type="Area2D" parent="YSort"]

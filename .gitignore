@@ -8,6 +8,7 @@
 .import/
 
 .git/
+addons/
 
 #ignorer dans tous les dossiers : (regénérés par Godot)
 **.import

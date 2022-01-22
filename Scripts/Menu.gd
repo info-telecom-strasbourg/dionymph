@@ -8,7 +8,6 @@ var settings_panel = preload("res://Scenes/Settings.tscn").instance()
 
 func _ready():
 	$AnimationPlayer.play("RESET")
-	yield(get_tree().create_timer(0.5), "timeout")
 	$AnimationPlayer.play("MenuAnim", -1, 0.5)
 	settings_panel.visible = false
 	$Panels.add_child(settings_panel)
@@ -25,3 +24,9 @@ func _on_ButtonPar_pressed():
 		settings_panel.close_panel()
 	else:
 		settings_panel.open_panel()
+
+func _process(delta):
+	for cloud in $Clouds.get_children():
+		cloud.position.x -= 1.0
+		if cloud.position.x < -200:
+			cloud.position.x = 1000
