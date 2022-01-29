@@ -21,11 +21,12 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if play:
 		remove_child($Menu)
 		switch_music(null)
-		var intro:Node2D = preload("res://Scenes/Intro.tscn").instance()
-		add_child(intro)
-		intro.position = Vector2(384, 240)
-		intro.get_node("AnimationPlayer").play("Anim")
-		intro.get_node("AnimationPlayer").connect("animation_finished", self, "remove_intro", [intro])
+		add_dia(0, 1, 1, "start_game")
+#		var intro:Node2D = preload("res://Scenes/Intro.tscn").instance()
+#		add_child(intro)
+#		intro.position = Vector2(384, 240)
+#		intro.get_node("AnimationPlayer").play("Anim")
+#		intro.get_node("AnimationPlayer").connect("animation_finished", self, "remove_intro", [intro])
 
 func remove_intro(anim:String, intro:Node2D):
 	remove_child(intro)

@@ -11,7 +11,7 @@
 [ext_resource path="res://Scenes/SwordHitbox.gd" type="Script" id=9]
 [ext_resource path="res://Graphics/Buttons/KeyEPressed.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/Buttons/KeyE.png" type="Texture" id=11]
-[ext_resource path="res://Graphics/Effects/spotlight_1.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/Effects/spotlight_1_a.png" type="Texture" id=12]
 
 [sub_resource type="ShaderMaterial" id=50]
 shader = ExtResource( 6 )
@@ -853,7 +853,10 @@ collision_layer = 2
 script = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 texture = ExtResource( 12 )
+texture_scale = 0.3
+energy = 1.6
 mode = 2
 shadow_enabled = true
 

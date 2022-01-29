@@ -478,7 +478,6 @@ scale = Vector2( 2, 2 )
 position = Vector2( 998.797, 405.588 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 23 )
-frame = 2
 playing = true
 
 [node name="Tree" parent="BackgroundAnim" instance=ExtResource( 14 )]
@@ -505,7 +504,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 376, 432 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 18 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="ShadowSprite" type="Sprite" parent="."]

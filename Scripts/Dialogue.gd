@@ -40,10 +40,10 @@ func set_dialogue_text():
 			var substr:String = whole_text.substr(options_index + 1, options_end_index - options_index - 1)
 			var option_arr:Array = substr.split(";")
 			var btn = preload("res://Scenes/DialogueOptionButton.tscn").instance()
-			btn.text = option_arr[1]
-			prints(option_arr[0], int(option_arr[0]))
+			btn.get_node("Label").text = option_arr[1]
 			btn.connect("pressed", self, "on_option_pressed", [int(option_arr[0])])
 			$Panel/OptionButtons.add_child(btn)
+			
 			options_index = whole_text.find("{", options_index + 1)
 	else:
 		st = whole_text
@@ -51,7 +51,9 @@ func set_dialogue_text():
 	if len(arr) > 2:
 		for param in arr:
 			var arr2:Array = param.split("=")
-			if arr2[0] == "img":
+			if arr2[0] == "prota":
+				$Panel/VBox/Portrait.texture = preload("res://Graphics/Dialogue/Hero.png")
+			elif arr2[0] == "img":
 				$Panel/VBox/Portrait.texture = load("res://Graphics/Dialogue/%s" % arr2[1])
 			elif arr2[0] == "name":
 				$Panel/VBox/Name.text = arr2[1]
@@ -67,7 +69,7 @@ func _process(delta):
 	RTL.visible_characters += 3
 
 func _input(event):
-	if Input.is_action_just_released("interaction"):
+	if Input.is_action_just_released("roll") or Input.is_action_just_released("interaction"):
 		_on_Next_pressed()
 
 func _on_Next_pressed():
@@ -76,6 +78,12 @@ func _on_Next_pressed():
 	if $Panel/Arrow.visible:
 		if $Panel/OptionButtons.get_child_count() != 0:
 			$Panel/OptionButtons.visible = true
+			var fix_time  = OS.get_ticks_msec()# - floor(OS.get_ticks_msec()/3600.0)*3600.0
+			var i:int = 0
+			for btn in $Panel/OptionButtons.get_children():
+				btn.material.set_shader_param("start_time", fix_time / 1000.0)
+				btn.material.set_shader_param("phase", 0.5 * i)
+				i += 1
 			$Panel/Arrow.visible = false
 			RTL.visible = false
 		else:

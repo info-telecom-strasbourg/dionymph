@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Test.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+uniform float start_time = 0.0;
+
+void fragment() {
+	float t = TIME - start_time;
+	COLOR = texture(TEXTURE, UV);
+	COLOR.a = clamp(atan(3.0 * t + UV.x - 0.5), 0, 1);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/start_time = 0.0
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 64.0
+margin_top = 36.0
+margin_right = 236.0
+margin_bottom = 176.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+material = SubResource( 2 )
+margin_right = 172.0
+margin_bottom = 116.0
+size_flags_vertical = 3
+text = "dsf"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_top = 120.0
+margin_right = 172.0
+margin_bottom = 140.0

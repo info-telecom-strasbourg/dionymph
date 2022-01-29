@@ -33,6 +33,7 @@ onready var hurtbox = $Hurtbox
 func _ready():
 	randomize() # Permet de forcer le jeu à générer un seed pour outpass le pseudo random 
 				# dans tous le code et ce dès le début de chaque scène où il y a Player
+	$Light2D.visible = true
 	stats.connect("no_health", self, "queue_free")
 	animationTree.active = true
 	$HitboxPivot/SwordHitbox/CollisionShape2D.disabled = true

@@ -12,7 +12,7 @@ addons/
 
 #ignorer dans tous les dossiers : (regénérés par Godot)
 **.import
-**.translation
+*.translation
 **.png~
 # - binaires
 **.aseprite
