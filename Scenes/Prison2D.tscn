@@ -390,7 +390,7 @@ NPC_name = "Michel"
 
 [node name="NPC2" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( 493.945, 96.0944 )
-id = 4
+id = 5
 NPC_name = "Ducknuk"
 
 [node name="NPC3" parent="YSort" instance=ExtResource( 15 )]

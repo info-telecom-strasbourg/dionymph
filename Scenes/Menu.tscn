@@ -1,9 +1,8 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
-[ext_resource path="res://Graphics/Button.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/starting screen/button (simple).png" type="Texture" id=1]
 [ext_resource path="res://Graphics/dionymph_logo.png" type="Texture" id=2]
 [ext_resource path="res://Text/Arimo-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Graphics/ButtonHover.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/Background.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=6]
 [ext_resource path="res://Graphics/ITS.png" type="Texture" id=7]
@@ -135,12 +134,25 @@ use_filter = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 4 )
+texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 128, 32 )
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 128, 32 )
+
+[sub_resource type="Shader" id=27]
+code = "shader_type canvas_item;
+uniform float strength = 0.0;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb += (sin(UV.x * 5.0 -  5.0 * TIME) + 1.0) / 8.0 * strength;
+}"
+
+[sub_resource type="ShaderMaterial" id=28]
+shader = SubResource( 27 )
+shader_param/strength = 0.0
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -405,7 +417,7 @@ offset = Vector2( -296, -168 )
 [node name="Clouds" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Clouds"]
-position = Vector2( 656, 296 )
+position = Vector2( 1000, 272 )
 scale = Vector2( 0.533333, 0.533333 )
 texture = ExtResource( 19 )
 
@@ -466,7 +478,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 998.797, 405.588 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 23 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Tree" parent="BackgroundAnim" instance=ExtResource( 14 )]
@@ -493,7 +505,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 376, 432 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 18 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="ShadowSprite" type="Sprite" parent="."]
@@ -529,6 +541,7 @@ __meta__ = {
 }
 
 [node name="ButtonNewG" type="Button" parent="."]
+material = SubResource( 28 )
 margin_left = 242.227
 margin_top = 193.492
 margin_right = 498.227
@@ -542,7 +555,18 @@ custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 2 )
 keep_pressed_outside = true
-text = "Nouvelle partie"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ButtonNewG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.12549, 0.12549, 0.12549, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "NOUVELLE_PARTIE"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -601,5 +625,7 @@ anims/Background = SubResource( 25 )
 anims/RESET = SubResource( 26 )
 
 [connection signal="pressed" from="ButtonPar" to="." method="_on_ButtonPar_pressed"]
+[connection signal="mouse_entered" from="ButtonNewG" to="." method="_on_ButtonNewG_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonNewG" to="." method="_on_ButtonNewG_mouse_exited"]
 [connection signal="pressed" from="ButtonNewG" to="." method="_on_ButtonNewG_pressed"]
 [connection signal="pressed" from="ButtonCharger" to="." method="_on_Button_pressed"]
