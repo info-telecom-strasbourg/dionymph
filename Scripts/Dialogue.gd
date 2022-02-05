@@ -7,10 +7,11 @@ signal button_clicked
 
 var b_finished:bool = false
 var world:int
-var num:int
+var NPC:int
+var dia_num:int
 var progress:int
 onready var RTL:RichTextLabel = $Panel/RichTextLabel
-var st:String
+var st:String#Dialogue text
 var tween:Tween
 
 func _ready():
@@ -26,15 +27,33 @@ func _ready():
 	tween.start()
 
 func set_dialogue_text():
-	st = tr("DIA_%s_%s_%s" % [world, num, progress])
+	var whole_text:String = tr("DIA_%s_%s_%s_%s" % [world, NPC, dia_num, progress])
 	$Panel.rect_size.x = 640
-	var arr:Array = st.split("|")
+	RTL.rect_size.x = 528
 	var align_left = true
 	$Panel/VBox/Portrait.texture = null
+	var options_index:int = whole_text.find("{")
+	if options_index != -1:
+		st = whole_text.substr(0, options_index)
+		while options_index != -1:
+			var options_end_index:int = whole_text.find("}", options_index)
+			var substr:String = whole_text.substr(options_index + 1, options_end_index - options_index - 1)
+			var option_arr:Array = substr.split(";")
+			var btn = preload("res://Scenes/DialogueOptionButton.tscn").instance()
+			btn.get_node("Label").text = option_arr[1]
+			btn.connect("pressed", self, "on_option_pressed", [int(option_arr[0])])
+			$Panel/OptionButtons.add_child(btn)
+			
+			options_index = whole_text.find("{", options_index + 1)
+	else:
+		st = whole_text
+	var arr:Array = st.split("|")
 	if len(arr) > 2:
 		for param in arr:
 			var arr2:Array = param.split("=")
-			if arr2[0] == "img":
+			if arr2[0] == "prota":
+				$Panel/VBox/Portrait.texture = preload("res://Graphics/Dialogue/Hero.png")
+			elif arr2[0] == "img":
 				$Panel/VBox/Portrait.texture = load("res://Graphics/Dialogue/%s" % arr2[1])
 			elif arr2[0] == "name":
 				$Panel/VBox/Name.text = arr2[1]
@@ -50,19 +69,32 @@ func _process(delta):
 	RTL.visible_characters += 3
 
 func _input(event):
-	if Input.is_action_just_released("interaction"):
+	if Input.is_action_just_released("roll") or Input.is_action_just_released("interaction"):
 		_on_Next_pressed()
 
 func _on_Next_pressed():
+	if $Panel/OptionButtons.visible:
+		return
 	if $Panel/Arrow.visible:
-		progress += 1
-		$Panel/Arrow.visible = false
-		if tr("DIA_%s_%s_%s" % [world, num, progress]) == "DIA_%s_%s_%s" % [world, num, progress]:
-			b_finished = true
-			$AnimationPlayer.play_backwards("FadeIn")
+		if $Panel/OptionButtons.get_child_count() != 0:
+			$Panel/OptionButtons.visible = true
+			var fix_time  = OS.get_ticks_msec()# - floor(OS.get_ticks_msec()/3600.0)*3600.0
+			var i:int = 0
+			for btn in $Panel/OptionButtons.get_children():
+				btn.material.set_shader_param("start_time", fix_time / 1000.0)
+				btn.material.set_shader_param("phase", 0.5 * i)
+				i += 1
+			$Panel/Arrow.visible = false
+			RTL.visible = false
 		else:
-			emit_signal("button_clicked")
-			set_dialogue_text()
+			progress += 1
+			$Panel/Arrow.visible = false
+			if tr("DIA_%s_%s_%s_%s" % [world, NPC, dia_num, progress]) == "DIA_%s_%s_%s_%s" % [world, NPC, dia_num, progress]:
+				b_finished = true
+				$AnimationPlayer.play_backwards("FadeIn")
+			else:
+				emit_signal("button_clicked")
+				set_dialogue_text()
 	else:
 		$Panel/Arrow.visible = true
 		RTL.bbcode_text = st
@@ -82,3 +114,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		yield(tween, "tween_all_completed")
 		get_parent().remove_child(self)
 		queue_free()
+
+func on_option_pressed(_dia_num:int):
+	RTL.visible = true
+	$Panel/OptionButtons.visible = false
+	dia_num = _dia_num
+	progress = 1
+	for option in $Panel/OptionButtons.get_children():
+		$Panel/OptionButtons.remove_child(option)
+		option.queue_free()
+	set_dialogue_text()

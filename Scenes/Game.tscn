@@ -71,5 +71,10 @@ __meta__ = {
 [node name="Dialogue" type="CanvasLayer" parent="."]
 layer = 2
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[node name="MusicTween" type="Tween" parent="."]
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="fade_menu" from="Menu" to="." method="_on_Menu_fade_menu"]

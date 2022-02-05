@@ -5,26 +5,6 @@
 [ext_resource path="res://Graphics/Arrow.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=5]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
-
-[sub_resource type="RichTextEffect" id=4]
-script = ExtResource( 2 )
-
-[sub_resource type="Shader" id=5]
-code = "shader_type canvas_item;
-uniform float amplitude = 5;
-uniform float frequency = 3.0;
-
-void vertex() {
-  VERTEX += vec2(0, amplitude * sin(frequency * TIME));
-}"
-
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 5 )
-shader_param/amplitude = 0.8
-shader_param/frequency = 15.0
-
 [sub_resource type="Animation" id=2]
 resource_name = "FadeIn"
 length = 0.3
@@ -77,6 +57,26 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+
+[sub_resource type="RichTextEffect" id=4]
+script = ExtResource( 2 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+uniform float amplitude = 5;
+uniform float frequency = 3.0;
+
+void vertex() {
+  VERTEX += vec2(0, amplitude * sin(frequency * TIME));
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/amplitude = 0.8
+shader_param/frequency = 15.0
+
 [node name="Dialogue" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -86,6 +86,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FadeIn = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
 [node name="Panel" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 anchor_top = 1.0
@@ -93,7 +97,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 64.0
 margin_top = 359.0
-margin_right = 4544.0
+margin_right = 11456.0
 margin_bottom = 479.0
 rect_min_size = Vector2( 640, 0 )
 custom_styles/panel = SubResource( 1 )
@@ -163,13 +167,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/FadeIn = SubResource( 2 )
-anims/RESET = SubResource( 3 )
+[node name="OptionButtons" type="VBoxContainer" parent="Panel"]
+visible = false
+margin_left = 176.0
+margin_top = 11.0
+margin_right = 508.0
+margin_bottom = 71.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ArrowTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="pressed" from="Panel/Next" to="." method="_on_Next_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="Panel/Next" to="." method="_on_Next_pressed"]
 [connection signal="timeout" from="ArrowTimer" to="." method="_on_ArrowTimer_timeout"]

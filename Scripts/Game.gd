@@ -5,9 +5,12 @@ var c_sv:int = -1
 enum Worlds {PRISON}
 var curr_world:int = -1
 var curr_NPC:int = -1
+var dia_num:int = -1
 var NPC_dialogue:Dialogue
+onready var music_player = $AudioStreamPlayer
 
 func _ready():
+	switch_music(load("res://Audio/Music/dionymphlullaby.ogg"))
 	TranslationServer.set_locale("fr")
 
 func _on_Menu_fade_menu():
@@ -17,23 +20,26 @@ func _on_Menu_fade_menu():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if play:
 		remove_child($Menu)
-		var intro:Node2D = preload("res://Scenes/Intro.tscn").instance()
-		add_child(intro)
-		intro.position = Vector2(384, 240)
-		intro.get_node("AnimationPlayer").play("Anim")
-		intro.get_node("AnimationPlayer").connect("animation_finished", self, "remove_intro", [intro])
+		switch_music(null)
+		add_dia(0, 1, 1, "start_game")
+#		var intro:Node2D = preload("res://Scenes/Intro.tscn").instance()
+#		add_child(intro)
+#		intro.position = Vector2(384, 240)
+#		intro.get_node("AnimationPlayer").play("Anim")
+#		intro.get_node("AnimationPlayer").connect("animation_finished", self, "remove_intro", [intro])
 
 func remove_intro(anim:String, intro:Node2D):
 	remove_child(intro)
 	intro.queue_free()
-	add_dia(0, 1, "start_game")
+	add_dia(0, 1, 1, "start_game")
 
-func add_dia(world:int, num:int, finished_event:String = ""):
+func add_dia(world:int, NPC:int, _dia_num:int, finished_event:String = ""):
 	if is_instance_valid(NPC_dialogue):
 		return
 	NPC_dialogue = preload("res://Scenes/Dialogue.tscn").instance()
 	NPC_dialogue.world = world
-	NPC_dialogue.num = num
+	NPC_dialogue.NPC = NPC
+	NPC_dialogue.dia_num = _dia_num
 	$Dialogue.add_child(NPC_dialogue)
 	if finished_event != "":
 		NPC_dialogue.connect("finished", self, finished_event)
@@ -72,4 +78,19 @@ func load_game(slot:int):
 
 func _input(event):
 	if Input.is_action_just_released("interaction") and curr_NPC != -1:
-		add_dia(0, curr_NPC)
+		add_dia(0, curr_NPC, 1)
+
+func switch_music(src):
+	#Music fading
+	var tween = $MusicTween
+	if music_player.playing:
+		tween.stop_all()
+		tween.remove_all()
+		tween.interpolate_property(music_player, "volume_db", null, -60, 1, Tween.TRANS_QUAD, Tween.EASE_IN)
+		tween.start()
+		yield(tween, "tween_all_completed")
+	if src != null:
+		music_player.stream = src
+		music_player.play()
+		tween.interpolate_property(music_player, "volume_db", -20, 0, 2, Tween.TRANS_EXPO, Tween.EASE_OUT)
+		tween.start()

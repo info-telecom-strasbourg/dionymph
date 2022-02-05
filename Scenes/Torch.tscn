@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Graphics/prison/Torch.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Effects/spotlight_1_s.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.327434, 0.59292, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.74902, 0, 0.498039, 1, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.2
+color_ramp = SubResource( 3 )
+
+[node name="Torch" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 5.0
+energy = 1.2
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( -0.176773, -5.7371 )
+lifetime = 5.0
+process_material = SubResource( 1 )
+texture = ExtResource( 3 )
