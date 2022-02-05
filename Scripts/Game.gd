@@ -21,6 +21,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if play:
 		remove_child($Menu)
 		switch_music(null)
+		yield(get_tree().create_timer(1.0), "timeout")
+		$SFX.stream = preload("res://Audio/Sounds/Door.wav")
+		$SFX.play()
+		yield(get_tree().create_timer(0.5), "timeout")
 		add_dia(0, 1, 1, "start_game")
 #		var intro:Node2D = preload("res://Scenes/Intro.tscn").instance()
 #		add_child(intro)

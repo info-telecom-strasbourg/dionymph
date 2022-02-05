@@ -414,7 +414,7 @@ NPC_name = "Ducknuk"
 
 [node name="NPC3" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( 116, -12 )
-id = 6
+id = 4
 NPC_name = "Ducknuk"
 
 [node name="Open" type="Area2D" parent="YSort"]

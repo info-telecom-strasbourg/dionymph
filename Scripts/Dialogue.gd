@@ -13,6 +13,9 @@ var progress:int
 onready var RTL:RichTextLabel = $Panel/RichTextLabel
 var st:String#Dialogue text
 var tween:Tween
+var SFX_stream
+var pitch:float = 2.0
+var freq:float = 1.0
 
 func _ready():
 	progress = 1
@@ -47,10 +50,15 @@ func set_dialogue_text():
 			options_index = whole_text.find("{", options_index + 1)
 	else:
 		st = whole_text
+	SFX_stream = null
 	var arr:Array = st.split("|")
 	if len(arr) > 2:
 		for param in arr:
 			var arr2:Array = param.split("=")
+			if arr2[0] == "prota":
+				SFX_stream = load("res://Audio/Sounds/DialogueSound.wav")
+				pitch = 2
+				freq = 1.0
 			if arr2[0] == "prota":
 				$Panel/VBox/Portrait.texture = preload("res://Graphics/Dialogue/Hero.png")
 			elif arr2[0] == "img":
@@ -64,6 +72,22 @@ func set_dialogue_text():
 	st = arr[-1]
 	RTL.bbcode_text = "[textFade]" + st
 	$ArrowTimer.start((len(RTL.bbcode_text) / 15.0) / 5.0)
+	if not SFX_stream:
+		if NPC == 3:
+			pitch = 1
+			freq = 0.8
+			SFX_stream = load("res://Audio/Sounds/DialogueSound.wav")
+		elif NPC == 4:
+			pitch = 1.5
+			freq = 0.6
+			SFX_stream = load("res://Audio/Sounds/DialogueSound.wav")
+		elif NPC == 5:
+			pitch = 5
+			freq = 1.2
+			SFX_stream = load("res://Audio/Sounds/DialogueSound.wav")
+	if SFX_stream:
+		$SFX.stream = SFX_stream
+		$SFXTimer.start()
 
 func _process(delta):
 	RTL.visible_characters += 3
@@ -97,11 +121,13 @@ func _on_Next_pressed():
 				set_dialogue_text()
 	else:
 		$Panel/Arrow.visible = true
+		$SFXTimer.stop()
 		RTL.bbcode_text = st
 		RTL.visible_characters = len(RTL.bbcode_text)
 
 func _on_ArrowTimer_timeout():
 	$Panel/Arrow.visible = true
+	$SFXTimer.stop()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if b_finished:
@@ -124,3 +150,10 @@ func on_option_pressed(_dia_num:int):
 		$Panel/OptionButtons.remove_child(option)
 		option.queue_free()
 	set_dialogue_text()
+
+
+func _on_SFXTimer_timeout():
+	$SFX.volume_db = linear2db(range_lerp(pitch, 0, 10, 1, 0)) + 1.0
+	$SFXTimer.start(randf() * 0.06 / freq + 0.06 / freq)
+	$SFX.pitch_scale = randf() * 0.1 * pitch + 0.4 * pitch
+	$SFX.play()
