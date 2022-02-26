@@ -52,6 +52,7 @@ func set_dialogue_text():
 		st = whole_text
 	SFX_stream = null
 	var arr:Array = st.split("|")
+	var prota:bool = false
 	if len(arr) > 2:
 		for param in arr:
 			var arr2:Array = param.split("=")
@@ -60,11 +61,14 @@ func set_dialogue_text():
 				pitch = 2
 				freq = 1.0
 			if arr2[0] == "prota":
+				prota = true
 				$Panel/VBox/Portrait.texture = preload("res://Graphics/Dialogue/Hero.png")
 			elif arr2[0] == "img":
 				$Panel/VBox/Portrait.texture = load("res://Graphics/Dialogue/%s" % arr2[1])
-			elif arr2[0] == "name":
-				$Panel/VBox/Name.text = arr2[1]
+	if not prota and tr("NPC_%s_NAME" % NPC) != "NPC_%s_NAME" % NPC:
+		$Panel/VBox/Name.text = tr("NPC_%s_NAME" % NPC)
+	if prota:
+		$Panel/VBox/Name.text = ""
 	if $Panel/VBox/Portrait.texture:
 		$Panel/VBox/Portrait.visible = true
 	else:
@@ -76,15 +80,19 @@ func set_dialogue_text():
 		if NPC == 3:
 			pitch = 1
 			freq = 0.8
-			SFX_stream = load("res://Audio/Sounds/DialogueSound.wav")
+			SFX_stream = preload("res://Audio/Sounds/DialogueSound.wav")
 		elif NPC == 4:
 			pitch = 1.5
 			freq = 0.6
-			SFX_stream = load("res://Audio/Sounds/DialogueSound.wav")
+			SFX_stream = preload("res://Audio/Sounds/DialogueSound.wav")
 		elif NPC == 5:
 			pitch = 5
 			freq = 1.2
-			SFX_stream = load("res://Audio/Sounds/DialogueSound.wav")
+			SFX_stream = preload("res://Audio/Sounds/DialogueSound.wav")
+		elif NPC == 9:
+			pitch = 3
+			freq = 0.8
+			SFX_stream = preload("res://Audio/Sounds/DialogueSound.wav")
 	if SFX_stream:
 		$SFX.stream = SFX_stream
 		$SFXTimer.start()

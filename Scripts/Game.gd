@@ -8,13 +8,14 @@ var curr_NPC:int = -1
 var dia_num:int = -1
 var NPC_dialogue:Dialogue
 onready var music_player = $AudioStreamPlayer
+var world_scene:Node2D
 
 func _ready():
-	switch_music(load("res://Audio/Music/dionymphlullaby.ogg"))
+	switch_music(load("res://Audio/Music/lullaby.ogg"))
 	TranslationServer.set_locale("fr")
 
 func _on_Menu_fade_menu():
-	$AnimationPlayer.play_backwards("MenuFade")
+	$AnimationPlayer.play("MenuFade")
 	play = true
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -37,7 +38,7 @@ func remove_intro(anim:String, intro:Node2D):
 	intro.queue_free()
 	add_dia(0, 1, 1, "start_game")
 
-func add_dia(world:int, NPC:int, _dia_num:int, finished_event:String = ""):
+func add_dia(world:int, NPC:int, _dia_num:int, finished_event:String = "", on_click_event:String = ""):
 	if is_instance_valid(NPC_dialogue):
 		return
 	NPC_dialogue = preload("res://Scenes/Dialogue.tscn").instance()
@@ -45,20 +46,28 @@ func add_dia(world:int, NPC:int, _dia_num:int, finished_event:String = ""):
 	NPC_dialogue.NPC = NPC
 	NPC_dialogue.dia_num = _dia_num
 	$Dialogue.add_child(NPC_dialogue)
+	if is_instance_valid(world_scene) and "dont_move" in world_scene:
+		world_scene.dont_move = true
+		if not (NPC == 7 and _dia_num == 1):
+			NPC_dialogue.connect("finished", self, "allow_movement")
+	if on_click_event != "":
+		NPC_dialogue.connect("button_clicked", self, on_click_event)
 	if finished_event != "":
 		NPC_dialogue.connect("finished", self, finished_event)
-	
+
+func allow_movement():
+	world_scene.dont_move = false
+
 func start_game():
-	var prison = preload("res://Scenes/Prison2D.tscn").instance()
-	prison.modulate.a = 0.0
-	add_child(prison)
+	world_scene = preload("res://Scenes/Prison2D.tscn").instance()
+	world_scene.modulate.a = 0.0
+	add_child(world_scene)
 	var tween = Tween.new()
 	add_child(tween)
-	tween.interpolate_property(prison, "modulate", null, Color.white, 1.0)
-	tween.interpolate_property(prison.get_node("Camera2D"), "zoom", Vector2(0.46, 0.46), Vector2(0.4, 0.4), 4.0, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	tween.interpolate_property(world_scene, "modulate", null, Color.white, 1.0)
+	tween.interpolate_property(world_scene.get_node("Camera2D"), "zoom", Vector2(0.46, 0.46), Vector2(0.4, 0.4), 4.0, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	tween.start()
 	yield(tween, "tween_all_completed")
-	remove_child(tween)
 	tween.queue_free()
 
 func save_game():
@@ -81,8 +90,42 @@ func load_game(slot:int):
 			self[key] = save_info[key]
 
 func _input(event):
-	if Input.is_action_just_released("interaction") and curr_NPC != -1:
-		add_dia(0, curr_NPC, 1)
+	if Input.is_action_just_released("interaction") and curr_NPC != -1 and not (is_instance_valid(world_scene) and "dont_move" in world_scene and world_scene.dont_move):
+		if curr_NPC == 7:
+			#add_dia(world:int, NPC:int, _dia_num:int, finished_event:String = "", on_click_event:String = ""):
+			add_dia(0, curr_NPC, 1, "remove_barrel_anim")
+		elif curr_NPC == 8:
+			if not $Blur/BlackRect.is_connected("on_fade_in_finished", self, "change_world"):
+				$Blur/BlackRect.connect("on_fade_in_finished", self, "change_world", [preload("res://Scenes/SecretPassage.tscn")])
+				$Blur/BlackRect.fade()
+		else:
+			add_dia(curr_world, curr_NPC, 1)
+
+func change_world(scene):
+	curr_world = 1
+	world_scene.queue_free()
+	world_scene = scene.instance()
+	add_child(world_scene)
+	$Blur/BlackRect.disconnect("on_fade_in_finished", self, "change_world")
+
+func remove_barrel_anim():
+	$Blur/BlackRect.connect("on_fade_in_finished", self, "remove_barrel")
+	$Blur/BlackRect.connect("on_fade_out_finished", self, "resume_dialogue_7")
+	$Blur/BlackRect.fade(0.5)
+
+func resume_dialogue_7():
+	yield(get_tree().create_timer(0.8), "timeout")
+	$Blur/BlackRect.disconnect("on_fade_in_finished", self, "remove_barrel")
+	$Blur/BlackRect.disconnect("on_fade_out_finished", self, "resume_dialogue_7")
+	add_dia(0, 7, 2, "show_descendre")
+
+func show_descendre():
+	world_scene._on_Player_interact(8, tr("DESCENDRE"))
+
+func remove_barrel():
+	world_scene.get_node("YSort/Barrel/CollisionShape2D").disabled = true
+	world_scene.get_node("YSort/Barrel").id = 8
+	world_scene.get_node("YSort/Barrel/Sprite").texture = preload("res://Graphics/prison/prison 2D/escalier descendant.png")
 
 func switch_music(src):
 	#Music fading

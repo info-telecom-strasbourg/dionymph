@@ -11,6 +11,7 @@ radius = 15.5082
 
 [node name="NPC" type="KinematicBody2D"]
 script = ExtResource( 1 )
+NPC_texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2.59565 )

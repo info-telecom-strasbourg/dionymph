@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Caverne.mp3-ee8e4ee95efc426b376e52de89916b68.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Caverne.mp3"
+dest_files=[ "res://.import/Caverne.mp3-ee8e4ee95efc426b376e52de89916b68.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

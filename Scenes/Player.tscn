@@ -859,6 +859,7 @@ texture_scale = 0.3
 energy = 1.6
 mode = 2
 shadow_enabled = true
+shadow_gradient_length = 100.0
 
 [node name="ShadowSprite" type="Sprite" parent="."]
 position = Vector2( 0, 2 )

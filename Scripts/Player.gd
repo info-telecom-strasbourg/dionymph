@@ -8,7 +8,7 @@ const PlayerHurtSound = preload("res://Scenes/PlayerHurtSound.tscn")
 # Variables accessibles dans l'onglet à droite en sélectionnant Player.tscn
 export var ACCELERATION = 500
 export var MAX_SPEED = 100
-export var ROLL_SPEED = 140
+export var ROLL_SPEED = 250
 export var FRICTION = 500
 
 # Enum pour machine état des animations du joueur
@@ -49,7 +49,7 @@ func _physics_process(delta):
 			attack_state(delta)
 
 func move_state(delta):
-	if is_instance_valid(game.NPC_dialogue):
+	if is_instance_valid(game.world_scene) and "dont_move" in game.world_scene and game.world_scene.dont_move:
 		return
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -142,10 +142,11 @@ func _unhandled_input(event):
 			house.enter()
 
 func _on_NPCHitbox_area_entered(area):
-	if area.get_parent() is KinematicBody2D:
-		emit_signal("interact", area.get_parent().id, tr("PARLER"))
+	var obj = area.get_parent()
+	if obj.type == "NPC":
+		emit_signal("interact", obj.id, tr("PARLER"))
 	else:
-		emit_signal("interact", area.id, tr("OUVRIR"))
+		emit_signal("interact", obj.id, obj.txt)
 
 func _on_NPCHitbox_area_exited(area):
 	emit_signal("interact_finish")

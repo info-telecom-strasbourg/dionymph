@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dionymphlullaby.ogg-68fe7826eb8728b9a8971eabae13a7e6.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/dionymphlullaby.ogg"
+dest_files=[ "res://.import/dionymphlullaby.ogg-68fe7826eb8728b9a8971eabae13a7e6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

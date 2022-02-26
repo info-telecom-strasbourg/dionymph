@@ -11,11 +11,10 @@
 addons/
 
 #ignorer dans tous les dossiers : (regénérés par Godot)
-**.import
 *.translation
-**.png~
+*.png~
 # - binaires
-**.aseprite
+*.aseprite
 # - fichiers de sauvegarde de Krita
-**.kra
+*.kra
 

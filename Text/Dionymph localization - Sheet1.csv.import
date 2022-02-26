@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Text/Dionymph localization - Sheet1.fr.translation", "res://Text/Dionymph localization - Sheet1.en.translation" ]
+
+source_file="res://Text/Dionymph localization - Sheet1.csv"
+dest_files=[ "res://Text/Dionymph localization - Sheet1.fr.translation", "res://Text/Dionymph localization - Sheet1.en.translation" ]
+
+[params]
+
+compress=true
+delimiter=0
