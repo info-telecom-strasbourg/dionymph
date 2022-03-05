@@ -59,9 +59,8 @@ func allow_movement():
 	world_scene.dont_move = false
 
 func start_game():
-	world_scene = preload("res://Scenes/Prison2D.tscn").instance()
+	change_world(preload("res://Scenes/Prison2D.tscn"), 0)
 	world_scene.modulate.a = 0.0
-	add_child(world_scene)
 	var tween = Tween.new()
 	add_child(tween)
 	tween.interpolate_property(world_scene, "modulate", null, Color.white, 1.0)
@@ -96,17 +95,21 @@ func _input(event):
 			add_dia(0, curr_NPC, 1, "remove_barrel_anim")
 		elif curr_NPC == 8:
 			if not $Blur/BlackRect.is_connected("on_fade_in_finished", self, "change_world"):
-				$Blur/BlackRect.connect("on_fade_in_finished", self, "change_world", [preload("res://Scenes/SecretPassage.tscn")])
+				$Blur/BlackRect.connect("on_fade_in_finished", self, "show_secret_passage")
 				$Blur/BlackRect.fade()
 		else:
 			add_dia(curr_world, curr_NPC, 1)
 
-func change_world(scene):
-	curr_world = 1
-	world_scene.queue_free()
+func show_secret_passage():
+	change_world(preload("res://Scenes/SecretPassage.tscn"), 1)
+	$Blur/BlackRect.disconnect("on_fade_in_finished", self, "change_world")
+
+func change_world(scene, world_num):
+	curr_world = world_num
+	if is_instance_valid(world_scene):
+		world_scene.queue_free()
 	world_scene = scene.instance()
 	add_child(world_scene)
-	$Blur/BlackRect.disconnect("on_fade_in_finished", self, "change_world")
 
 func remove_barrel_anim():
 	$Blur/BlackRect.connect("on_fade_in_finished", self, "remove_barrel")
