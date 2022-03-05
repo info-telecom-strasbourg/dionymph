@@ -275,7 +275,7 @@ points = PoolVector2Array( 24, 30, 0, 30, 0, 14.7856, 24, 14.7856 )
 4/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 35, 8 )
+extents = Vector2( 41.5, 9 )
 
 [node name="Prison2D" type="Node2D"]
 position = Vector2( -2, 1 )
@@ -346,7 +346,7 @@ cell_tile_origin = 2
 cell_y_sort = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( -1441770, 4, 0, -1310665, 4, 0, -1310652, 4, 0, -982986, 1, 0, -196615, 1, 0, 131065, 1, 0, 786501, 2, 0, 852022, 1, 0, 917526, 4, 0, 917573, 2, 0 )
+tile_data = PoolIntArray( -1441770, 4, 0, -1310665, 4, 0, -1310652, 4, 0, -1179616, 2, 0, -982986, 1, 0, -196615, 1, 0, 131065, 1, 0, 589880, 3, 0, 589891, 3, 0, 786501, 2, 0, 852022, 1, 0, 917526, 4, 0, 917573, 2, 0, 983071, 2, 0, 1114144, 2, 0 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 8, 0 )
@@ -355,11 +355,11 @@ position = Vector2( 8, 0 )
 remote_path = NodePath("../../../Camera2D")
 
 [node name="NPC1" parent="YSort" instance=ExtResource( 15 )]
-position = Vector2( 237.51, -8.37357 )
+position = Vector2( 182, -163 )
 id = 3
 
 [node name="NPC2" parent="YSort" instance=ExtResource( 15 )]
-position = Vector2( 493.945, 96.0944 )
+position = Vector2( 182, 120 )
 id = 5
 
 [node name="NPC3" parent="YSort" instance=ExtResource( 15 )]
@@ -367,7 +367,7 @@ position = Vector2( 116, -12 )
 id = 4
 
 [node name="Barrel" parent="YSort" instance=ExtResource( 17 )]
-position = Vector2( 686, -1 )
+position = Vector2( 456, 133 )
 texture = ExtResource( 13 )
 txt = "OBSERVER"
 id = 7
@@ -375,6 +375,10 @@ id = 7
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 2 )]
+margin_left = -144.0
+margin_top = -88.0
+margin_right = -104.0
+margin_bottom = -48.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="BlackRect" parent="CanvasLayer" instance=ExtResource( 1 )]
@@ -387,11 +391,15 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToWorld"]
-position = Vector2( 749, -64 )
+position = Vector2( 741.5, -63 )
 shape = SubResource( 8 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 1, 1, 1, 0.501961 )
+
+[node name="Tonneau" type="Sprite" parent="CanvasModulate"]
+position = Vector2( 457, 105 )
+texture = ExtResource( 13 )
 
 [connection signal="interact" from="YSort/Player" to="." method="_on_Player_interact"]
 [connection signal="interact_finish" from="YSort/Player" to="." method="_on_Player_interact_finish"]
