@@ -60,7 +60,6 @@ func set_dialogue_text():
 				SFX_stream = load("res://Audio/Sounds/DialogueSound.wav")
 				pitch = 2
 				freq = 1.0
-			if arr2[0] == "prota":
 				prota = true
 				$Panel/VBox/Portrait.texture = preload("res://Graphics/Dialogue/Hero.png")
 			elif arr2[0] == "img":

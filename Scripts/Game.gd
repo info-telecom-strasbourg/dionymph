@@ -101,6 +101,7 @@ func _input(event):
 			add_dia(curr_world, curr_NPC, 1)
 
 func show_secret_passage():
+	$GameUI/HealthUI.visible = true
 	change_world(preload("res://Scenes/SecretPassage.tscn"), 1)
 	$Blur/BlackRect.disconnect("on_fade_in_finished", self, "change_world")
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/prison mur coin gauche.png-c196fdd87efe56aef5546b45380f8771.stex"
+path="res://.import/Praurelia.png-d7b461f5049006d70af09d9361516db9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/prison/prison mur coin gauche.png"
-dest_files=[ "res://.import/prison mur coin gauche.png-c196fdd87efe56aef5546b45380f8771.stex" ]
+source_file="res://Graphics/Dialogue/Praurelia.png"
+dest_files=[ "res://.import/Praurelia.png-d7b461f5049006d70af09d9361516db9.stex" ]
 
 [params]
 
@@ -20,8 +20,8 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
+flags/filter=true
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/SceneTransition.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/Buttons/KeyE.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/HealthUI.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuFade"
@@ -177,6 +178,13 @@ autoplay = true
 autoplay = true
 
 [node name="MusicTween" type="Tween" parent="."]
+
+[node name="GameUI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="HealthUI" parent="GameUI" instance=ExtResource( 5 )]
+visible = false
+rect_scale = Vector2( 2, 2 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="fade_menu" from="Menu" to="." method="_on_Menu_fade_menu"]
