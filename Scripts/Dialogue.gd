@@ -90,7 +90,7 @@ func set_dialogue_text():
 			SFX_stream = preload("res://Audio/Sounds/DialogueSound.wav")
 		elif NPC == 9:
 			pitch = 3
-			freq = 0.8
+			freq = 0.7
 			SFX_stream = preload("res://Audio/Sounds/DialogueSound.wav")
 	if SFX_stream:
 		$SFX.stream = SFX_stream

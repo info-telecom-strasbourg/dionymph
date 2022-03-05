@@ -143,10 +143,11 @@ func _unhandled_input(event):
 
 func _on_NPCHitbox_area_entered(area):
 	var obj = area.get_parent()
-	if obj.type == "NPC":
-		emit_signal("interact", obj.id, tr("PARLER"))
-	else:
-		emit_signal("interact", obj.id, obj.txt)
+	if obj is KinematicBody2D:
+		if obj.type == "NPC":
+			emit_signal("interact", obj.id, tr("PARLER"))
+		else:
+			emit_signal("interact", obj.id, obj.txt)
 
 func _on_NPCHitbox_area_exited(area):
 	emit_signal("interact_finish")

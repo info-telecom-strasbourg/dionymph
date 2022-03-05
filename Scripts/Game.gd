@@ -97,13 +97,18 @@ func _input(event):
 			if not $Blur/BlackRect.is_connected("on_fade_in_finished", self, "change_world"):
 				$Blur/BlackRect.connect("on_fade_in_finished", self, "show_secret_passage")
 				$Blur/BlackRect.fade()
+		elif curr_NPC == 9:
+			add_dia(curr_world, curr_NPC, 1, "teleport_player_back")
 		else:
 			add_dia(curr_world, curr_NPC, 1)
+
+func teleport_player_back():
+	world_scene.teleport_player_back()
 
 func show_secret_passage():
 	$GameUI/HealthUI.visible = true
 	change_world(preload("res://Scenes/SecretPassage.tscn"), 1)
-	$Blur/BlackRect.disconnect("on_fade_in_finished", self, "change_world")
+	$Blur/BlackRect.disconnect("on_fade_in_finished", self, "show_secret_passage")
 
 func change_world(scene, world_num):
 	curr_world = world_num

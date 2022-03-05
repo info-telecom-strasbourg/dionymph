@@ -6,4 +6,4 @@ export var txt:String
 export var id:int
 
 func _ready():
-	pass # Replace with function body.
+	$Sprite.texture = texture

@@ -21,3 +21,12 @@ func _on_Player_interact_finish():
 	game.curr_NPC = -1
 	if talk_node.modulate.a == 1.0:
 		talk_node.get_node("AnimationPlayer").play_backwards("TalkAnim")
+
+
+func _on_Teleport_body_entered(body):
+	body.position.x = 168
+	body.position.y = 104
+
+func teleport_player_back():
+	$Teleport.monitoring = false
+	$Player.position = Vector2(176, 328)
