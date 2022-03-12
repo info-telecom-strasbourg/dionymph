@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player.png-e943d0e72f12d909008ea8e0e2409916.stex"
+path="res://.import/caverne sol.png-bf1da670ab48394be8a77973f977daac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Dialogue/Player.png"
-dest_files=[ "res://.import/Player.png-e943d0e72f12d909008ea8e0e2409916.stex" ]
+source_file="res://Graphics/caverne/caverne sol.png"
+dest_files=[ "res://.import/caverne sol.png-bf1da670ab48394be8a77973f977daac.stex" ]
 
 [params]
 

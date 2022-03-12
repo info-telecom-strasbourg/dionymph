@@ -4,7 +4,7 @@ var play:bool = false
 var c_sv:int = -1
 enum Worlds {PRISON}
 var curr_world:int = -1
-var curr_NPC:int = -1
+var event_data:Dictionary = {}
 var dia_num:int = -1
 var NPC_dialogue:Dialogue
 onready var music_player = $AudioStreamPlayer
@@ -89,26 +89,24 @@ func load_game(slot:int):
 			self[key] = save_info[key]
 
 func _input(event):
-	if Input.is_action_just_released("interaction") and curr_NPC != -1 and not (is_instance_valid(world_scene) and "dont_move" in world_scene and world_scene.dont_move):
-		if curr_NPC == 7:
-			#add_dia(world:int, NPC:int, _dia_num:int, finished_event:String = "", on_click_event:String = ""):
-			add_dia(0, curr_NPC, 1, "remove_barrel_anim")
-		elif curr_NPC == 8:
-			if not $Blur/BlackRect.is_connected("on_fade_in_finished", self, "change_world"):
-				$Blur/BlackRect.connect("on_fade_in_finished", self, "show_secret_passage")
-				$Blur/BlackRect.fade()
-		elif curr_NPC == 9:
-			add_dia(curr_world, curr_NPC, 1, "teleport_player_back")
-		else:
-			add_dia(curr_world, curr_NPC, 1)
+	if Input.is_action_just_released("interaction") and not event_data.empty() and not (is_instance_valid(world_scene) and "dont_move" in world_scene and world_scene.dont_move):
+		if event_data.has("NPC"):
+			add_dia(curr_world, event_data.NPC, 1, event_data.event if event_data.has("event") else "")
+		elif event_data.has("event"):
+			callv(event_data.event, event_data.event_args if event_data.has("event_args") else [])
+		hide_event_data()
 
+func teleport_player_to_prau():
+	world_scene.teleport_player_to_prau()
+	
 func teleport_player_back():
 	world_scene.teleport_player_back()
 
 func show_secret_passage():
+	$Blur/BlackRect.fade(0.7)
+	yield($Blur/BlackRect, "on_fade_in_finished")
 	$GameUI/HealthUI.visible = true
 	change_world(preload("res://Scenes/SecretPassage.tscn"), 1)
-	$Blur/BlackRect.disconnect("on_fade_in_finished", self, "show_secret_passage")
 
 func change_world(scene, world_num):
 	curr_world = world_num
@@ -120,7 +118,7 @@ func change_world(scene, world_num):
 func remove_barrel_anim():
 	$Blur/BlackRect.connect("on_fade_in_finished", self, "remove_barrel")
 	$Blur/BlackRect.connect("on_fade_out_finished", self, "resume_dialogue_7")
-	$Blur/BlackRect.fade(0.5)
+	$Blur/BlackRect.fade(0.7)
 
 func resume_dialogue_7():
 	yield(get_tree().create_timer(0.8), "timeout")
@@ -129,11 +127,12 @@ func resume_dialogue_7():
 	add_dia(0, 7, 2, "show_descendre")
 
 func show_descendre():
-	world_scene._on_Player_interact(8, tr("DESCENDRE"))
+	show_event_data(tr("DESCENDRE"), {"event":"show_secret_passage"})
 
 func remove_barrel():
 	world_scene.get_node("YSort/Barrel/CollisionShape2D").disabled = true
-	world_scene.get_node("YSort/Barrel").id = 8
+	world_scene.get_node("YSort/Barrel").event = "show_secret_passage"
+	world_scene.get_node("YSort/Barrel").event_args = []
 	world_scene.get_node("YSort/Barrel").txt = tr(("DESCENDRE"))
 	world_scene.get_node("YSort/Barrel/Sprite").texture = preload("res://Graphics/prison/prison 2D/escalier descendant.png")
 
@@ -151,3 +150,14 @@ func switch_music(src):
 		music_player.play()
 		tween.interpolate_property(music_player, "volume_db", -20, 0, 2, Tween.TRANS_EXPO, Tween.EASE_OUT)
 		tween.start()
+
+func show_event_data(txt:String, data:Dictionary):
+	event_data = data
+	$Dialogue/Talk/HBox/Label.text = txt
+	$Dialogue/Talk/AnimationPlayer.play("TalkAnim")
+
+
+func hide_event_data():
+	event_data.clear()
+	if $Dialogue/Talk.modulate.a == 1.0:
+		$Dialogue/Talk/AnimationPlayer.play_backwards("TalkAnim")

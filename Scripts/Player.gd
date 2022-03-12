@@ -145,9 +145,9 @@ func _on_NPCHitbox_area_entered(area):
 	var obj = area.get_parent()
 	if obj is KinematicBody2D:
 		if obj.type == "NPC":
-			emit_signal("interact", obj.id, tr("PARLER"))
-		else:
-			emit_signal("interact", obj.id, obj.txt)
+			game.show_event_data(tr("PARLER"), {"NPC":obj.id, "event":obj.on_finish_event})
+		elif obj.type == "interactable":
+			game.show_event_data(obj.txt, {"event":obj.event, "event_args":obj.event_args})
 
 func _on_NPCHitbox_area_exited(area):
-	emit_signal("interact_finish")
+	game.hide_event_data()
