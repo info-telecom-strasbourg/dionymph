@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/YellowApple.png-70a395141579dbab223fdd5cc83cbe60.stex"
+path="res://.import/Orange.png-e1d88cac51a62ca3a5852590986c8654.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/YellowApple.png"
-dest_files=[ "res://.import/YellowApple.png-70a395141579dbab223fdd5cc83cbe60.stex" ]
+source_file="res://Graphics/objet recursif/Orange.png"
+dest_files=[ "res://.import/Orange.png-e1d88cac51a62ca3a5852590986c8654.stex" ]
 
 [params]
 
