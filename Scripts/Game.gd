@@ -134,6 +134,7 @@ func show_descendre():
 func remove_barrel():
 	world_scene.get_node("YSort/Barrel/CollisionShape2D").disabled = true
 	world_scene.get_node("YSort/Barrel").id = 8
+	world_scene.get_node("YSort/Barrel").txt = tr(("DESCENDRE"))
 	world_scene.get_node("YSort/Barrel/Sprite").texture = preload("res://Graphics/prison/prison 2D/escalier descendant.png")
 
 func switch_music(src):

@@ -1,7 +1,6 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scenes/SceneTransition.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/HealthUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Graphics/prison/prison 2D/prison dalle 1.png" type="Texture" id=5]
@@ -360,13 +359,6 @@ id = 7
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 2 )]
-margin_left = -144.0
-margin_top = -88.0
-margin_right = -104.0
-margin_bottom = -48.0
-rect_scale = Vector2( 2, 2 )
-
 [node name="BlackRect" parent="CanvasLayer" instance=ExtResource( 1 )]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
@@ -382,10 +374,6 @@ shape = SubResource( 8 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 1, 1, 1, 0.501961 )
-
-[node name="Tonneau" type="Sprite" parent="CanvasModulate"]
-position = Vector2( 457, 105 )
-texture = ExtResource( 13 )
 
 [connection signal="interact" from="YSort/Player" to="." method="_on_Player_interact"]
 [connection signal="interact_finish" from="YSort/Player" to="." method="_on_Player_interact_finish"]

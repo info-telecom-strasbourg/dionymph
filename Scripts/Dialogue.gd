@@ -14,6 +14,7 @@ onready var RTL:RichTextLabel = $Panel/RichTextLabel
 var st:String#Dialogue text
 var tween:Tween
 var SFX_stream
+
 var pitch:float = 2.0
 var freq:float = 1.0
 
@@ -57,7 +58,7 @@ func set_dialogue_text():
 		for param in arr:
 			var arr2:Array = param.split("=")
 			if arr2[0] == "prota":
-				SFX_stream = load("res://Audio/Sounds/DialogueSound.wav")
+				SFX_stream = preload("res://Audio/Sounds/DialogueSound.wav")
 				pitch = 2
 				freq = 1.0
 				prota = true
