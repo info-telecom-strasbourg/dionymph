@@ -2,9 +2,9 @@ extends Enemy
 
 func _ready():
 	ACCELERATION = 500
-	MAX_SPEED = 50
+	MAX_SPEED = 40
 	FRICTION = 200
-	can_attack = false
+	can_attack = true
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)

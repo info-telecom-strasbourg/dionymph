@@ -3,9 +3,9 @@
 [ext_resource path="res://Graphics/starting screen/button (simple).png" type="Texture" id=1]
 [ext_resource path="res://Graphics/dionymph_logo.png" type="Texture" id=2]
 [ext_resource path="res://Text/Arimo-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Graphics/objet recursif/ITS.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/Background.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=6]
-[ext_resource path="res://Graphics/ITS.png" type="Texture" id=7]
 [ext_resource path="res://Graphics/World/GrassBackground.png" type="Texture" id=8]
 [ext_resource path="res://Graphics/World/DirtTileset.png" type="Texture" id=9]
 [ext_resource path="res://Graphics/World/CliffTileset.png" type="Texture" id=10]
@@ -13,7 +13,7 @@
 [ext_resource path="res://Graphics/Player/Player.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/Bush.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Tree.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Bat.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Graphics/Player/Shiba.png" type="Texture" id=16]
 [ext_resource path="res://Graphics/Effects/leaf.png" type="Texture" id=17]
 [ext_resource path="res://Graphics/starting screen/nuage gros.png" type="Texture" id=18]
@@ -478,7 +478,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 998.797, 405.588 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 23 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Tree" parent="BackgroundAnim" instance=ExtResource( 14 )]
@@ -505,7 +505,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 376, 432 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 18 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="ShadowSprite" type="Sprite" parent="."]
@@ -612,7 +612,7 @@ layer = 2
 [node name="Its" type="Sprite" parent="."]
 position = Vector2( 43.7642, 37.6296 )
 scale = Vector2( 0.0339294, 0.0339294 )
-texture = ExtResource( 7 )
+texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false

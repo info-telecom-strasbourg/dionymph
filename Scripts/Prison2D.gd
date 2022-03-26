@@ -14,4 +14,6 @@ var world = "res://Scenes/World.tscn"
 
 func _on_ToWorld_body_entered(body):
 	game.show_event_data(tr("MONTER"), {"event":"afficher_chateau"})
-	#game.change_world(preload("res://Scenes/Chateau_rez_de_chaussée.tscn"), 0)
+
+func _on_ToWorld_body_exited(body):
+	game.hide_event_data()

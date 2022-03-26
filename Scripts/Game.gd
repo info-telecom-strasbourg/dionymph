@@ -23,19 +23,19 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		remove_child($Menu)
 		switch_music(null)
 		yield(get_tree().create_timer(1.0), "timeout")
-		$SFX.stream = preload("res://Audio/Sounds/Door.wav")
-		$SFX.play()
-		yield(get_tree().create_timer(0.5), "timeout")
-		add_dia(0, 1, 1, "start_game")
-#		var intro:Node2D = preload("res://Scenes/Intro.tscn").instance()
-#		add_child(intro)
-#		intro.position = Vector2(384, 240)
-#		intro.get_node("AnimationPlayer").play("Anim")
-#		intro.get_node("AnimationPlayer").connect("animation_finished", self, "remove_intro", [intro])
+		var intro:Node2D = preload("res://Scenes/Intro.tscn").instance()
+		add_child(intro)
+		intro.position = Vector2(384, 240)
+		intro.get_node("AnimationPlayer").play("Anim", -1, 5.0)
+		intro.get_node("AnimationPlayer").connect("animation_finished", self, "remove_intro", [intro])
 
 func remove_intro(anim:String, intro:Node2D):
 	remove_child(intro)
 	intro.queue_free()
+	yield(get_tree().create_timer(0.2), "timeout")
+	$SFX.stream = preload("res://Audio/Sounds/Door.wav")
+	$SFX.play()
+	yield(get_tree().create_timer(0.5), "timeout")
 	add_dia(0, 1, 1, "start_game")
 
 func add_dia(world:int, NPC:int, _dia_num:int, finished_event:String = "", on_click_event:String = ""):
@@ -107,6 +107,12 @@ func show_secret_passage():
 	yield($Blur/BlackRect, "on_fade_in_finished")
 	$GameUI/HealthUI.visible = true
 	change_world(preload("res://Scenes/SecretPassage.tscn"), 1)
+
+func afficher_chateau():
+	$Blur/BlackRect.fade(0.7)
+	yield($Blur/BlackRect, "on_fade_in_finished")
+	$GameUI/HealthUI.visible = true
+	change_world(preload("res://Scenes/Chateau_rez_de_chaussée.tscn"), 2)
 
 func change_world(scene, world_num):
 	curr_world = world_num
