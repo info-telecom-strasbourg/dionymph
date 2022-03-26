@@ -18,8 +18,9 @@ var velocity = Vector2.ZERO
 var knockback = Vector2.ZERO
 var can_attack:bool
 
-var state = CHASE
 
+var state = CHASE
+var attacks:Array 
 onready var sprite = $AnimatedSprite
 onready var stats = $Stats
 onready var playerDetectionZone = $PlayerDetectionZone
@@ -69,7 +70,12 @@ func _on_Stats_no_health():
 func _on_AttackZone_body_entered(body):
 	if can_attack:
 		state = ATTACK
-		attack1()
+		while state == ATTACK:
+			attacks.shuffle()
+			call(attacks[0])
+			
+		
+		
 
 
 func _on_AttackZone_body_exited(body):
@@ -91,8 +97,19 @@ func attack1():
 	$Attack1.rotation = atan2(global_position.y - player.global_position.y, global_position.x - player.global_position.x) + PI
 	$Attack1/AnimationPlayer.play("Attack1Anim")
 
+func attack2():
+	yield(get_tree().create_timer(0.5), "timeout")
+	$Attack2.monitoring = true
 
-
+func attack3():
+	$Attack3.monitoring = true
+	$attack3/AnimationPlayer.play("attack3animation")
+	yield($attack3/AnimationPlayer,"animation_finished")
+	$Attack3.monitoring = false
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	
+		
 func _on_AnimationPlayer_animation_finished(anim_name):
 	yield(get_tree().create_timer(0.5), "timeout")
 	if state == ATTACK:
