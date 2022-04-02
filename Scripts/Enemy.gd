@@ -108,8 +108,31 @@ func attack3():
 	$Attack3.monitoring = false
 	yield(get_tree().create_timer(0.5), "timeout")
 	
+func attack4():
+	$Attack4.monitoring = true
+	$attack4/AnimationPlayer.play("Nouvelle animation")
+	yield($attack4/AnimationPlayer,"animation_finished")
+	$attack4.monitoring = false
+	yield(get_tree().create_timer(0.5), "timeout")
 	
-		
+func attack5():
+	$Attack5.monitoring = true
+	$attack5/AnimationPlayer.play("Attack5animation")
+	yield($attack5/AnimationPlayer,"animation_finished")
+	$attack5.monitoring = false
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+func attack6():
+	var dur = 1
+	for k in 5:
+		var bombe = preload("res://Scenes/Bombe.tscn").instance()
+		get_parent().add_child(bombe)
+		bombe.position = position 
+		var cible:Vector2 = polar2cartesian (rand_range(8,33), rand_range(0,2*PI))
+		var tween:Tween = Tween.new()
+		add_child(tween)
+		tween.interpolation_property(bombe, "position", null, cible,dur )
+
 func _on_AnimationPlayer_animation_finished(anim_name):
 	yield(get_tree().create_timer(0.5), "timeout")
 	if state == ATTACK:
