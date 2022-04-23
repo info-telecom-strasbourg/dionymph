@@ -2,7 +2,7 @@ extends Node2D
 
 var entered = false
 var sceneFader = find_node("ColorRect")
-var prison = "res://Scenes/Prison.tscn"
+var prison = "res://Maps/Prison.tscn"
 
 func _ready():
 	sceneFader = find_node("ColorRect")

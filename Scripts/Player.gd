@@ -49,7 +49,7 @@ func _physics_process(delta):
 			attack_state(delta)
 
 func move_state(delta):
-	if is_instance_valid(game.world_scene) and "dont_move" in game.world_scene and game.world_scene.dont_move:
+	if game and is_instance_valid(game.world_scene) and "dont_move" in game.world_scene and game.world_scene.dont_move:
 		return
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -143,11 +143,19 @@ func _unhandled_input(event):
 
 func _on_NPCHitbox_area_entered(area):
 	var obj = area.get_parent()
-	if obj is KinematicBody2D:
+	if obj is KinematicBody2D and "type" in obj:
 		if obj.type == "NPC":
 			game.show_event_data(tr("PARLER"), {"NPC":obj.id, "event":obj.on_finish_event})
 		elif obj.type == "interactable":
 			game.show_event_data(obj.txt, {"event":obj.event, "event_args":obj.event_args})
 
 func _on_NPCHitbox_area_exited(area):
+	game.hide_event_data()
+
+
+func _on_NextArea_body_entered(body):
+	game.show_event_data(tr("ENTRER"), {"event":"change_world", "event_args":[preload("res://Maps/SecretPassage2.tscn"), 3]})
+
+
+func _on_NextArea_body_exited(body):
 	game.hide_event_data()

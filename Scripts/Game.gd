@@ -1,5 +1,6 @@
 extends Node2D
 
+const TEST = true
 var play:bool = false
 var c_sv:int = -1
 enum Worlds {PRISON}
@@ -11,8 +12,14 @@ onready var music_player = $AudioStreamPlayer
 var world_scene:Node2D
 
 func _ready():
-	switch_music(load("res://Audio/Music/lullaby.ogg"))
-	TranslationServer.set_locale("fr")
+	if TEST:
+		remove_child($Menu)
+		$GameUI/HealthUI.visible = true
+		change_world(preload("res://Maps/SecretPassage1.tscn"), 1)
+		#world_scene.get_node("Teleport").monitoring = false
+	else:
+		switch_music(load("res://Audio/Music/lullaby.ogg"))
+		TranslationServer.set_locale("fr")
 
 func _on_Menu_fade_menu():
 	$AnimationPlayer.play("MenuFade")
@@ -59,7 +66,7 @@ func allow_movement():
 	world_scene.dont_move = false
 
 func start_game():
-	change_world(preload("res://Scenes/Prison2D.tscn"), 0)
+	change_world(preload("res://Maps/Prison2D.tscn"), 0)
 	world_scene.modulate.a = 0.0
 	var tween = Tween.new()
 	add_child(tween)
@@ -106,13 +113,13 @@ func show_secret_passage():
 	$Blur/BlackRect.fade(0.7)
 	yield($Blur/BlackRect, "on_fade_in_finished")
 	$GameUI/HealthUI.visible = true
-	change_world(preload("res://Scenes/SecretPassage.tscn"), 1)
+	change_world(preload("res://Maps/SecretPassage.tscn"), 1)
 
 func afficher_chateau():
 	$Blur/BlackRect.fade(0.7)
 	yield($Blur/BlackRect, "on_fade_in_finished")
 	$GameUI/HealthUI.visible = true
-	change_world(preload("res://Scenes/Chateau_rez_de_chaussée.tscn"), 2)
+	change_world(preload("res://Maps/Chateau_rez_de_chaussée.tscn"), 2)
 
 func change_world(scene, world_num):
 	curr_world = world_num
@@ -167,3 +174,6 @@ func hide_event_data():
 	event_data.clear()
 	if $Dialogue/Talk.modulate.a == 1.0:
 		$Dialogue/Talk/AnimationPlayer.play_backwards("TalkAnim")
+
+func open_chest():
+	print(event_data.contents)
