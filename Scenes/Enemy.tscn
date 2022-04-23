@@ -572,6 +572,7 @@ anims/stop = SubResource( 15 )
 collision_layer = 0
 collision_mask = 4
 monitoring = false
+monitorable = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack1"]
@@ -583,16 +584,20 @@ anims/Attack1Anim = SubResource( 17 )
 anims/RESET = SubResource( 18 )
 
 [node name="Attack2" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4
+monitoring = false
+monitorable = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2"]
 shape = SubResource( 19 )
 
 [node name="attack3" type="Area2D" parent="."]
-visible = false
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack3"]
@@ -605,7 +610,10 @@ anims/RESET = SubResource( 22 )
 anims/attack3animation = SubResource( 21 )
 
 [node name="attack4" type="Area2D" parent="."]
-visible = false
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack4"]
@@ -627,8 +635,11 @@ root_node = NodePath("../CollisionShape2D3")
 "anims/Nouvelle animation" = SubResource( 26 )
 anims/RESET = SubResource( 27 )
 
-[node name="attack5" type="Area2D" parent="."]
-visible = false
+[node name="Attack5" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack5"]

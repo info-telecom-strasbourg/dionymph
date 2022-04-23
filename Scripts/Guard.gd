@@ -6,11 +6,14 @@ func _ready():
 	FRICTION = 200
 	can_attack = true
 	attacks =["attack1","attack2","attack3"]
+
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
 	knockback = move_and_slide(knockback)
 	
 	match state:
+		ATTACK:
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # Friction
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # Friction
 			if wander_controler.get_time_left() == 0:

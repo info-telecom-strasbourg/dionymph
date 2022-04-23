@@ -862,10 +862,12 @@ shadow_enabled = true
 shadow_gradient_length = 100.0
 
 [node name="ShadowSprite" type="Sprite" parent="."]
+light_mask = 0
 position = Vector2( 0, 2 )
 texture = ExtResource( 2 )
 
 [node name="PlayerSprite" type="Sprite" parent="."]
+light_mask = 0
 material = SubResource( 50 )
 position = Vector2( 0, -9 )
 texture = ExtResource( 1 )

@@ -70,13 +70,13 @@ func _on_Stats_no_health():
 func _on_AttackZone_body_entered(body):
 	if can_attack:
 		state = ATTACK
-		while state == ATTACK:
-			attacks.shuffle()
-			call(attacks[0])
-			
-		
-		
+		randomizeAttack()
 
+
+func randomizeAttack():
+	if state == ATTACK:
+		attacks.shuffle()
+		call_deferred(attacks[0])
 
 func _on_AttackZone_body_exited(body):
 	state = CHASE
@@ -93,34 +93,60 @@ func _on_PlayerDetectionZone_body_exited(body):
 	state = pick_random_state([IDLE, WANDER])
 
 func attack1():
+	yield(get_tree(), "idle_frame")
 	$Attack1.monitoring = true
+	$Attack1.monitorable = true
 	$Attack1.rotation = atan2(global_position.y - player.global_position.y, global_position.x - player.global_position.x) + PI
 	$Attack1/AnimationPlayer.play("Attack1Anim")
+	yield($Attack1/AnimationPlayer,"animation_finished")
+	$Attack1.monitoring = false
+	$Attack1.monitorable = false
+	yield(get_tree().create_timer(1.0), "timeout")
+	randomizeAttack()
 
 func attack2():
+	yield(get_tree(), "idle_frame")
 	yield(get_tree().create_timer(0.5), "timeout")
 	$Attack2.monitoring = true
+	$Attack2.monitorable = true
+	yield(get_tree().create_timer(0.1), "timeout")
+	$Attack2.monitoring = false
+	$Attack2.monitorable = false
+	yield(get_tree().create_timer(1.0), "timeout")
+	randomizeAttack()
 
 func attack3():
-	$Attack3.monitoring = true
+	yield(get_tree(), "idle_frame")
+	$attack3.monitoring = true
+	$attack3.monitorable = true
 	$attack3/AnimationPlayer.play("attack3animation")
 	yield($attack3/AnimationPlayer,"animation_finished")
-	$Attack3.monitoring = false
-	yield(get_tree().create_timer(0.5), "timeout")
-	
+	$attack3.monitoring = false
+	$attack3.monitorable = false
+	yield(get_tree().create_timer(1.0), "timeout")
+	randomizeAttack()
+
 func attack4():
-	$Attack4.monitoring = true
+	yield(get_tree(), "idle_frame")
+	$attack4.monitoring = true
+	$attack4.monitorable = true
 	$attack4/AnimationPlayer.play("Nouvelle animation")
 	yield($attack4/AnimationPlayer,"animation_finished")
 	$attack4.monitoring = false
+	$attack4.monitorable = false
 	yield(get_tree().create_timer(0.5), "timeout")
+	randomizeAttack()
 	
 func attack5():
+	yield(get_tree(), "idle_frame")
 	$Attack5.monitoring = true
-	$attack5/AnimationPlayer.play("Attack5animation")
-	yield($attack5/AnimationPlayer,"animation_finished")
-	$attack5.monitoring = false
+	$Attack5.monitorable = true
+	$Attack5/AnimationPlayer.play("Attack5animation")
+	yield($Attack5/AnimationPlayer,"animation_finished")
+	$Attack5.monitoring = false
+	$Attack5.monitorable = false
 	yield(get_tree().create_timer(0.5), "timeout")
+	randomizeAttack()
 	
 func attack6():
 	var dur = 1
@@ -132,6 +158,7 @@ func attack6():
 		var tween:Tween = Tween.new()
 		add_child(tween)
 		tween.interpolation_property(bombe, "position", null, cible,dur )
+	randomizeAttack()
 
 func attack7():
 	$Attack7.monitoring = true
