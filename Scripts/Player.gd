@@ -151,11 +151,3 @@ func _on_NPCHitbox_area_entered(area):
 
 func _on_NPCHitbox_area_exited(area):
 	game.hide_event_data()
-
-
-func _on_NextArea_body_entered(body):
-	game.show_event_data(tr("ENTRER"), {"event":"change_world", "event_args":[preload("res://Maps/SecretPassage2.tscn"), 3]})
-
-
-func _on_NextArea_body_exited(body):
-	game.hide_event_data()
