@@ -15,7 +15,7 @@ func _ready():
 	if TEST:
 		remove_child($Menu)
 		$GameUI/HealthUI.visible = true
-		change_world(preload("res://Maps/SecretPassage1.tscn"), 1)
+		change_world(preload("res://Maps/SecretPassage.tscn"), 1)
 		#world_scene.get_node("Teleport").monitoring = false
 	else:
 		switch_music(load("res://Audio/Music/lullaby.ogg"))
