@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scenes/WanderController.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/WhiteColorShader.tres" type="Shader" id=2]
@@ -479,6 +479,36 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="Animation" id=33]
+resource_name = "Attack7animation"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 0, 0, 11, -11, 11, 12 ), PoolVector2Array( 0, 0, 32, -32, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=34]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, 0, 11, -11, 11, 12 ) ]
+}
+
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 16
 script = ExtResource( 9 )
@@ -494,6 +524,7 @@ texture = ExtResource( 5 )
 [node name="Stats" parent="." instance=ExtResource( 7 )]
 
 [node name="Hurtbox" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 0, 12.9142 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
@@ -538,7 +569,6 @@ anims/start = SubResource( 14 )
 anims/stop = SubResource( 15 )
 
 [node name="Attack1" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4
 monitoring = false
@@ -597,23 +627,33 @@ root_node = NodePath("../CollisionShape2D3")
 "anims/Nouvelle animation" = SubResource( 26 )
 anims/RESET = SubResource( 27 )
 
-[node name="Attack5" type="Area2D" parent="."]
+[node name="attack5" type="Area2D" parent="."]
 visible = false
 script = ExtResource( 8 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack5"]
 position = Vector2( 12.875, 0 )
 shape = SubResource( 28 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Attack5"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="attack5"]
 shape = SubResource( 31 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Attack5"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="attack5"]
 shape = SubResource( 32 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Attack5"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="attack5"]
 anims/Attack4animation = SubResource( 29 )
 anims/RESET = SubResource( 30 )
+
+[node name="attack7" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="attack7"]
+polygon = PoolVector2Array( 0, 0, 11, -11, 11, 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="attack7"]
+root_node = NodePath("../CollisionPolygon2D")
+anims/Attack7animation = SubResource( 33 )
+anims/RESET = SubResource( 34 )
 
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

@@ -133,6 +133,14 @@ func attack6():
 		add_child(tween)
 		tween.interpolation_property(bombe, "position", null, cible,dur )
 
+func attack7():
+	$Attack7.monitoring = true
+	$attack7/AnimationPlayer.play("Attack7animation")
+	yield($attack7/AnimationPlayer,"animation_finished")
+	$attack7.monitoring = false
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	
 func _on_AnimationPlayer_animation_finished(anim_name):
 	yield(get_tree().create_timer(0.5), "timeout")
 	if state == ATTACK:
