@@ -7,7 +7,7 @@ func _ready():
 
 
 func _on_NextArea_body_entered(body):
-	game.show_event_data(tr("ENTRER"), {"event":"change_world", "event_args":[preload("res://Maps/SecretPassagedeFin.tscn"), 4]})
+	game.show_event_data(tr("ENTRER"), {"event":"change_world", "event_args":[preload("res://Maps/passage_secret/SecretPassagedeFin.tscn"), 4]})
 
 
 func _on_NextArea_body_exited(body):

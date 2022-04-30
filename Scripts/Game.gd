@@ -15,7 +15,7 @@ func _ready():
 	if TEST:
 		remove_child($Menu)
 		$GameUI/HealthUI.visible = true
-		change_world(preload("res://Maps/SecretPassage.tscn"), 1)
+		change_world(preload("res://Maps/passage_secret/SecretPassage1.tscn"), 1)
 		#change_world(preload("res://Maps/Village_part1.tscn"), 4)
 		#world_scene.get_node("Teleport").monitoring = false
 	else:
@@ -67,7 +67,7 @@ func allow_movement():
 	world_scene.dont_move = false
 
 func start_game():
-	change_world(preload("res://Maps/Prison2D.tscn"), 0)
+	change_world(preload("res://Maps/Chateau/Prison2D.tscn"), 0)
 	world_scene.modulate.a = 0.0
 	var tween = Tween.new()
 	add_child(tween)
@@ -120,7 +120,7 @@ func afficher_chateau():
 	$Blur/BlackRect.fade(0.7)
 	yield($Blur/BlackRect, "on_fade_in_finished")
 	$GameUI/HealthUI.visible = true
-	change_world(preload("res://Maps/Chateau_rez_de_chaussée.tscn"), 2)
+	change_world(preload("res://Maps/Chateau/Chateau_rez_de_chaussée.tscn"), 2)
 
 func change_world(scene, world_num):
 	curr_world = world_num

@@ -872,7 +872,7 @@ material = SubResource( 50 )
 position = Vector2( 0, -9 )
 texture = ExtResource( 1 )
 hframes = 60
-frame = 44
+frame = 38
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -905,7 +905,7 @@ parameters/playback = SubResource( 24 )
 parameters/Attack/blend_position = Vector2( 0, 0 )
 parameters/Idle/blend_position = Vector2( -0.00333333, 1.08204 )
 parameters/Roll/blend_position = Vector2( 0, 0 )
-parameters/Run/blend_position = Vector2( 0, 0 )
+parameters/Run/blend_position = Vector2( -0.506403, -0.0078572 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
 position = Vector2( 0, -4 )
