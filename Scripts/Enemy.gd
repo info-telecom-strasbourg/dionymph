@@ -38,7 +38,6 @@ func _ready():
 func accelerate_towards_point(point, delta):
 	var direction = global_position.direction_to(point)
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
-	sprite.flip_h = velocity.x < 0
 
 func update_wander():
 	state = pick_random_state([IDLE, WANDER])

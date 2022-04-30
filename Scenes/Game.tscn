@@ -236,7 +236,9 @@ autoplay = true
 layer = 2
 
 [node name="HealthUI" parent="GameUI" instance=ExtResource( 5 )]
-visible = false
+margin_left = 3.0
+margin_right = 386.0
+margin_bottom = 242.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

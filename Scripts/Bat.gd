@@ -6,10 +6,11 @@ func _ready():
 	FRICTION = 200
 	can_attack = false
 	attacks=[]
+
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
 	knockback = move_and_slide(knockback)
-	
+	sprite.flip_h = velocity.x < 0
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # Friction

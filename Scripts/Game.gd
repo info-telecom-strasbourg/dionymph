@@ -16,9 +16,10 @@ func _ready():
 		remove_child($Menu)
 		$GameUI/HealthUI.visible = true
 		change_world(preload("res://Maps/SecretPassage.tscn"), 1)
+		#change_world(preload("res://Maps/Village_part1.tscn"), 4)
 		#world_scene.get_node("Teleport").monitoring = false
 	else:
-		switch_music(load("res://Audio/Music/lullaby.ogg"))
+		switch_music(preload("res://Audio/Music/lullaby.ogg"))
 		TranslationServer.set_locale("fr")
 
 func _on_Menu_fade_menu():
