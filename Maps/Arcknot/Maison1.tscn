@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Graphics/Structures/housetileset.png" type="Texture" id=1]
-[ext_resource path="res://Graphics/prison/prison 2D/escalier descendant.png" type="Texture" id=2]
-[ext_resource path="res://Graphics/prison/prison 2D/tonneau.png" type="Texture" id=3]
-[ext_resource path="res://Graphics/chateau/table.png" type="Texture" id=4]
-[ext_resource path="res://Graphics/chateau/tapis rouge.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/prison/prison 2D/tonneau.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/prison/prison 2D/escalier descendant.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/chateau/tapis rouge.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/chateau/table.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/chateau/chaise face.png" type="Texture" id=6]
 [ext_resource path="res://Graphics/chateau/pot de fleur.png" type="Texture" id=7]
-[ext_resource path="res://Graphics/prison/prison 2D/trappe.png" type="Texture" id=8]
-[ext_resource path="res://Graphics/prison/prison 2D/escalier montant.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/prison/prison 2D/escalier montant.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/prison/prison 2D/trappe.png" type="Texture" id=9]
 [ext_resource path="res://Graphics/Structures/déco_chateau.png" type="Texture" id=10]
 
 [sub_resource type="TileSet" id=1]
@@ -517,7 +517,7 @@
 26/shapes = [  ]
 26/z_index = 0
 27/name = "escalier descendant.png 27"
-27/texture = ExtResource( 2 )
+27/texture = ExtResource( 3 )
 27/tex_offset = Vector2( 0, 0 )
 27/modulate = Color( 1, 1, 1, 1 )
 27/region = Rect2( 0, 0, 32, 32 )
@@ -531,7 +531,7 @@
 27/shapes = [  ]
 27/z_index = 0
 28/name = "escalier descendant.png 28"
-28/texture = ExtResource( 2 )
+28/texture = ExtResource( 3 )
 28/tex_offset = Vector2( 0, 0 )
 28/modulate = Color( 1, 1, 1, 1 )
 28/region = Rect2( 0, 0, 32, 32 )
@@ -556,7 +556,7 @@
 
 [sub_resource type="TileSet" id=2]
 0/name = "tapis rouge.png 0"
-0/texture = ExtResource( 5 )
+0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 160, 96 )
@@ -579,7 +579,7 @@
 0/shapes = [  ]
 0/z_index = 0
 1/name = "table.png 1"
-1/texture = ExtResource( 4 )
+1/texture = ExtResource( 5 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( -2, 21, 37, 27 )
@@ -621,7 +621,7 @@
 3/shapes = [  ]
 3/z_index = 0
 4/name = "tonneau.png 4"
-4/texture = ExtResource( 3 )
+4/texture = ExtResource( 2 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 1, 8, 22, 30 )
@@ -635,7 +635,7 @@
 4/shapes = [  ]
 4/z_index = 0
 5/name = "trappe.png 5"
-5/texture = ExtResource( 8 )
+5/texture = ExtResource( 9 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 0, 16, 16 )
@@ -649,7 +649,7 @@
 5/shapes = [  ]
 5/z_index = 0
 6/name = "escalier montant.png 6"
-6/texture = ExtResource( 9 )
+6/texture = ExtResource( 8 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 0, 16, 16 )
