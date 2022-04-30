@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Graphics/prison/prison 2D/prison dalle 1.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/World/GrassBackground.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Graphics/chateau/pot de fleur rouge.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/objet recursif/stardewvalley-tree.png" type="Texture" id=11]
 [ext_resource path="res://Graphics/Structures/multiple_maison_transparents.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 33.8856, 0, 34, 47, 0, 47 )
@@ -376,3 +377,16 @@ scale = Vector2( 0.5, 0.5 )
 tile_set = SubResource( 2 )
 format = 1
 tile_data = PoolIntArray( 0, 1, 0, 131069, 0, 0, 65536, 1, 0, 65540, 0, 0, 65545, 0, 0, 131072, 1, 0, 131076, 0, 0, 196612, 0, 0, 196622, 0, 0, 262151, 0, 0, 524303, 0, 0, 655358, 0, 0, 589825, 1, 0, 589827, 0, 0, 589831, 0, 0, 589836, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 13 )]
+light_mask = 0
+position = Vector2( 41.2909, 253.322 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 63, 326 )
+current = true
+zoom = Vector2( 0.4, 0.4 )
+smoothing_enabled = true

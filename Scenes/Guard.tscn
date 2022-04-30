@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/WhiteColorShader.tres" type="Shader" id=2]
@@ -27,6 +27,22 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "MoveUp"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11 ]
+}
+
 [node name="Guard" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
@@ -35,7 +51,7 @@ material = SubResource( 1 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 hframes = 60
-frame = 2
+frame = 5
 
 [node name="Stats" parent="." index="2"]
 max_health = 2
@@ -60,6 +76,7 @@ visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="17"]
 anims/MoveRight = SubResource( 2 )
+anims/MoveUp = SubResource( 3 )
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]
