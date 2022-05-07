@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Graphics/prison/prison 2D/prison dalle 1.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/World/GrassBackground.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Graphics/objet recursif/stardewvalley-tree.png" type="Texture" id=11]
 [ext_resource path="res://Graphics/Structures/multiple_maison_transparents.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Maps/Arcknot/Ville_part1.gd" type="Script" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 33.8856, 0, 34, 47, 0, 47 )
@@ -345,7 +346,8 @@ points = PoolVector2Array( 0, 129.25, 152.25, 129.25, 152.25, 304, 0, 304 )
 } ]
 1/z_index = 0
 
-[node name="Node2D" type="Node2D"]
+[node name="Ville" type="Node2D"]
+script = ExtResource( 14 )
 
 [node name="sol" type="TileMap" parent="."]
 scale = Vector2( 0.5, 0.5 )
@@ -368,16 +370,6 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 786480, 2, 0, 852016, 2, 0, 917551, 2, 0, 983087, 2, 0, 1048623, 2, 0, 1114159, 2, 0, 1179695, 2, 0, 1245231, 2, 0, 1310767, 2, 0, 1376283, 0, 0, 1376295, 2, 0, 1376300, 2, 0, 1376301, 2, 0, 1376302, 2, 0, 1376303, 2, 0, 1507324, 0, 0, 1507325, 0, 0, 1441819, 0, 0, 1441831, 2, 0, 1441836, 2, 0, 1441837, 2, 0, 1441838, 2, 0, 1441839, 2, 0, 1572860, 0, 0, 1572861, 0, 0, 1507355, 0, 0, 1507367, 2, 0, 1507372, 2, 0, 1507373, 2, 0, 1638396, 0, 0, 1638397, 0, 0, 1572891, 0, 0, 1572903, 2, 0, 1572908, 2, 0, 1572909, 2, 0, 1703932, 0, 0, 1703933, 0, 0, 1638427, 0, 0, 1638439, 2, 0, 1638444, 2, 0, 1638445, 2, 0, 1769468, 0, 0, 1769469, 0, 0, 1769470, 0, 0, 1703963, 0, 0, 1703975, 2, 0, 1703980, 2, 0, 1703981, 2, 0, 1835004, 0, 0, 1835005, 0, 0, 1835006, 0, 0, 1835007, 0, 0, 1769499, 0, 0, 1769500, 0, 0, 1769511, 2, 0, 1769516, 2, 0, 1769517, 2, 0, 1769518, 2, 0, 1835017, 1, 0, 1835018, 1, 0, 1835019, 1, 0, 1835020, 1, 0, 1835021, 1, 0, 1835022, 1, 0, 1835023, 1, 0, 1835035, 0, 0, 1835036, 0, 0, 1835047, 2, 0, 1835053, 2, 0, 1835054, 2, 0, 1835055, 2, 0, 1900553, 1, 0, 1900554, 1, 0, 1900555, 1, 0, 1900556, 1, 0, 1900557, 1, 0, 1900558, 1, 0, 1900559, 1, 0, 1900569, 0, 0, 1900570, 0, 0, 1900571, 0, 0, 1900572, 0, 0, 1900583, 2, 0, 1900591, 2, 0, 1966105, 0, 0, 1966106, 0, 0, 1966107, 0, 0, 1966108, 0, 0, 1966127, 2, 0, 2031641, 0, 0, 2031642, 0, 0, 2031643, 0, 0, 3080231, 0, 0, 3145767, 0, 0, 3211303, 0, 0, 3276839, 0, 0, 3342375, 0, 0, 3407911, 0, 0, 3473445, 0, 0, 3473446, 0, 0, 3473447, 0, 0, 3538957, 2, 0, 3538958, 2, 0, 3538981, 0, 0, 3538982, 0, 0, 3538983, 0, 0, 3604493, 2, 0, 3604494, 2, 0, 3604517, 0, 0, 3604518, 0, 0, 3604519, 0, 0, 3604520, 0, 0, 3670029, 2, 0, 3670030, 2, 0, 3735565, 2, 0, 3735566, 2, 0, 3801101, 2, 0, 3801102, 2, 0, 3866637, 2, 0, 3866638, 2, 0 )
 
-[node name="maison ville" type="TileMap" parent="."]
-tile_set = SubResource( 5 )
-format = 1
-
-[node name="maison_campagne" type="TileMap" parent="."]
-scale = Vector2( 0.5, 0.5 )
-tile_set = SubResource( 2 )
-format = 1
-tile_data = PoolIntArray( 0, 1, 0, 131069, 0, 0, 65536, 1, 0, 65540, 0, 0, 65545, 0, 0, 131072, 1, 0, 131076, 0, 0, 196612, 0, 0, 196622, 0, 0, 262151, 0, 0, 524303, 0, 0, 655358, 0, 0, 589825, 1, 0, 589827, 0, 0, 589831, 0, 0, 589836, 0, 0 )
-
 [node name="Player" parent="." instance=ExtResource( 13 )]
 light_mask = 0
 position = Vector2( 41.2909, 253.322 )
@@ -390,3 +382,15 @@ position = Vector2( 41.2909, 253.322 )
 current = true
 zoom = Vector2( 0.4, 0.4 )
 smoothing_enabled = true
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="maison ville" type="TileMap" parent="YSort"]
+tile_set = SubResource( 5 )
+format = 1
+
+[node name="maison_campagne" type="TileMap" parent="YSort"]
+scale = Vector2( 0.5, 0.5 )
+tile_set = SubResource( 2 )
+format = 1
+tile_data = PoolIntArray( 0, 1, 0, 131069, 0, 0, 65536, 1, 0, 65540, 0, 0, 65545, 0, 0, 131072, 1, 0, 131076, 0, 0, 196612, 0, 0, 196622, 0, 0, 262151, 0, 0, 524303, 0, 0, 655358, 0, 0, 589825, 1, 0, 589827, 0, 0, 589831, 0, 0, 589836, 0, 0 )

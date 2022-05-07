@@ -5,7 +5,7 @@ func _ready():
 	MAX_SPEED = 40
 	FRICTION = 200
 	can_attack = true
-	attacks =["attack1","attack2","attack3"]
+	attacks =["attack1"]
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -49,3 +49,4 @@ func _physics_process(delta):
 		velocity += softCollision.get_push_vector() * delta * 400
 	
 	velocity = move_and_slide(velocity)
+

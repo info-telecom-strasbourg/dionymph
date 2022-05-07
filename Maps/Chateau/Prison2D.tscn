@@ -270,7 +270,7 @@ __meta__ = {
 }
 
 [node name="Sol" type="TileMap" parent="."]
-modulate = Color( 1, 1, 1, 0.635294 )
+modulate = Color( 1, 1, 1, 0.501961 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -286,6 +286,7 @@ position = Vector2( -201, -256 )
 position = Vector2( 872, 232 )
 
 [node name="Mur" type="TileMap" parent="."]
+modulate = Color( 1, 1, 1, 0.827451 )
 tile_set = SubResource( 7 )
 cell_size = Vector2( 16, 16 )
 cell_tile_origin = 2
@@ -317,6 +318,7 @@ position = Vector2( 626, -45 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Barreaux" type="TileMap" parent="YSort"]
+modulate = Color( 1, 1, 1, 0.513726 )
 rotation = -3.14159
 tile_set = SubResource( 4 )
 cell_size = Vector2( 16, 16 )
@@ -325,6 +327,7 @@ format = 1
 tile_data = PoolIntArray( -393232, 1, 0, -393229, 1, 0, 262111, 1, 0, 262112, 1, 0, 262113, 1, 0, 262114, 1, 0, 327631, 1, 0, 327635, 1, 0, 458736, 1, 0, 458739, 1, 0 )
 
 [node name="Miscellanous" type="TileMap" parent="YSort"]
+modulate = Color( 1, 1, 1, 0.513726 )
 tile_set = SubResource( 13 )
 cell_size = Vector2( 8, 8 )
 cell_tile_origin = 2
@@ -340,18 +343,22 @@ position = Vector2( 8, 0 )
 remote_path = NodePath("../../../Camera2D")
 
 [node name="NPC1" parent="YSort" instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0.827451 )
 position = Vector2( 182, -163 )
 id = 3
 
 [node name="NPC2" parent="YSort" instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0.827451 )
 position = Vector2( 182, 120 )
 id = 5
 
 [node name="NPC3" parent="YSort" instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0.827451 )
 position = Vector2( 116, -12 )
 id = 4
 
 [node name="Barrel" parent="YSort" instance=ExtResource( 11 )]
+modulate = Color( 1, 1, 1, 0.827451 )
 position = Vector2( 456, 133 )
 texture = ExtResource( 7 )
 txt = "OBSERVER"
@@ -374,7 +381,6 @@ position = Vector2( 743.25, -66.5 )
 shape = SubResource( 8 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 1, 1, 1, 0.501961 )
 
 [connection signal="body_entered" from="ToWorld" to="." method="_on_ToWorld_body_entered"]
 

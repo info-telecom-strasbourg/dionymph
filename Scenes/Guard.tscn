@@ -20,10 +20,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 36, 37, 38, 39 ]
+"values": [ 36, 37, 38, 39, 20 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -36,10 +36,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 24, 25, 26, 27 ]
+"values": [ 24, 25, 26, 27, 0 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -52,10 +52,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 28, 29, 30, 31 ]
+"values": [ 28, 29, 30, 31, 10 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -117,12 +117,13 @@ material = SubResource( 1 )
 position = Vector2( 1.34932, -0.369179 )
 texture = ExtResource( 4 )
 hframes = 60
+frame = 31
 
 [node name="Stats" parent="." index="2"]
-max_health = 2
+max_health = 3
 
-[node name="Attack1" parent="." index="10"]
-visible = false
+[node name="AttackZone" parent="." index="6"]
+visible = true
 
 [node name="Attack2" parent="." index="11"]
 visible = false
