@@ -15,7 +15,8 @@ func _ready():
 	if TEST:
 		remove_child($Menu)
 		$GameUI/HealthUI.visible = true
-		change_world(preload("res://Maps/passage_secret/SecretPassage1.tscn"), 1)
+		change_world(preload("res://Maps/Arcknot/Maison1.tscn"), 1)
+		#change_world(preload("res://Maps/passage_secret/SecretPassage1.tscn"), 1)
 		#change_world(preload("res://Maps/Village_part1.tscn"), 4)
 		#world_scene.get_node("Teleport").monitoring = false
 	else:
