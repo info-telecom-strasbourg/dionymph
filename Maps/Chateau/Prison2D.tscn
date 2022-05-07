@@ -1,25 +1,25 @@
 [gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/SceneTransition.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Graphics/prison/prison 2D/grille fer.png" type="Texture" id=3]
-[ext_resource path="res://Graphics/prison/prison 2D/prison dalle 2.png" type="Texture" id=4]
-[ext_resource path="res://Graphics/prison/prison 2D/prison dalle 1.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/Prison2D.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Graphics/prison/prison 2D/prison mur.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/prison/prison 2D/prison dalle 2.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/prison/prison 2D/prison dalle 1.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/NPC.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Graphics/prison/prison 2D/grille fer.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/prison/prison 2D/boite bois.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/prison/prison 2D/tonneau.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/prison/prison 2D/chaines.png" type="Texture" id=8]
 [ext_resource path="res://Graphics/prison/prison 2D/pile de sac.png" type="Texture" id=9]
-[ext_resource path="res://Graphics/prison/prison 2D/pile de sac 2.png" type="Texture" id=10]
-[ext_resource path="res://Graphics/prison/prison 2D/chaines.png" type="Texture" id=11]
-[ext_resource path="res://Graphics/prison/prison 2D/boite bois.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/prison/prison 2D/tonneau.png" type="Texture" id=13]
-[ext_resource path="res://Scenes/NPC.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Interactable.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Graphics/prison/prison 2D/prison mur.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/Interactable.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/SceneTransition.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/Prison2D.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Graphics/prison/prison 2D/pile de sac 2.png" type="Texture" id=15]
 [ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=16]
 
 [sub_resource type="TileSet" id=1]
 0/name = "prison dalle 1.png 0"
-0/texture = ExtResource( 5 )
+0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 16, 16 )
@@ -33,7 +33,7 @@
 0/shapes = [  ]
 0/z_index = 0
 1/name = "prison dalle 2.png 1"
-1/texture = ExtResource( 4 )
+1/texture = ExtResource( 1 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 16, 16 )
@@ -55,7 +55,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [sub_resource type="TileSet" id=7]
 1/name = "grille fer.png 1"
-1/texture = ExtResource( 3 )
+1/texture = ExtResource( 5 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 7, 24, 37 )
@@ -76,7 +76,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 } ]
 1/z_index = 0
 2/name = "prison mur.png 2"
-2/texture = ExtResource( 8 )
+2/texture = ExtResource( 10 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 16, 16 )
@@ -105,7 +105,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [sub_resource type="TileSet" id=4]
 0/name = "grille fer.png 0"
-0/texture = ExtResource( 3 )
+0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 9, 16, 32 )
@@ -126,7 +126,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 } ]
 0/z_index = 0
 1/name = "grille fer.png 1"
-1/texture = ExtResource( 3 )
+1/texture = ExtResource( 5 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 9, 16, 32 )
@@ -161,7 +161,7 @@ points = PoolVector2Array( 24, 30, 0, 30, 0, 14.7856, 24, 14.7856 )
 
 [sub_resource type="TileSet" id=13]
 0/name = "pile de sac 2.png 0"
-0/texture = ExtResource( 10 )
+0/texture = ExtResource( 15 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 1, 18, 22, 22 )
@@ -182,7 +182,7 @@ points = PoolVector2Array( 24, 30, 0, 30, 0, 14.7856, 24, 14.7856 )
 } ]
 0/z_index = 0
 1/name = "boite bois.png 1"
-1/texture = ExtResource( 12 )
+1/texture = ExtResource( 6 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 2, 11, 20, 28 )
@@ -224,7 +224,7 @@ points = PoolVector2Array( 24, 30, 0, 30, 0, 14.7856, 24, 14.7856 )
 } ]
 2/z_index = 0
 3/name = "tonneau.png 3"
-3/texture = ExtResource( 13 )
+3/texture = ExtResource( 7 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 8, 24, 30 )
@@ -245,7 +245,7 @@ points = PoolVector2Array( 24, 30, 0, 30, 0, 14.7856, 24, 14.7856 )
 } ]
 3/z_index = 0
 4/name = "chaines.png 4"
-4/texture = ExtResource( 11 )
+4/texture = ExtResource( 8 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 12, 21, 11, 28 )
@@ -264,19 +264,19 @@ extents = Vector2( 46.75, 14.5 )
 
 [node name="Prison2D" type="Node2D"]
 position = Vector2( -2, 1 )
-script = ExtResource( 6 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_vertical_guides_": [ 384.045 ]
 }
 
 [node name="Sol" type="TileMap" parent="."]
-modulate = Color( 1, 1, 1, 0.635294 )
+modulate = Color( 1, 1, 1, 0.501961 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -786389, 0, 0, -786388, 0, 0, -786387, 0, 0, -786386, 0, 0, -786385, 0, 0, -786384, 0, 0, -720885, 0, 0, -720884, 0, 0, -720883, 0, 0, -720882, 0, 0, -720881, 0, 0, -720880, 0, 0, -720852, 0, 0, -720851, 0, 0, -720850, 0, 0, -720849, 0, 0, -720848, 0, 0, -655349, 1, 0, -655348, 1, 0, -655347, 1, 0, -655346, 0, 0, -655345, 1, 0, -655344, 1, 0, -655333, 0, 0, -655332, 0, 0, -655331, 0, 0, -655330, 0, 0, -655329, 0, 0, -655328, 0, 0, -655327, 0, 0, -655326, 0, 0, -655316, 0, 0, -655315, 0, 0, -655314, 0, 0, -655313, 0, 0, -655312, 0, 0, -589813, 1, 0, -589812, 1, 0, -589811, 1, 0, -589810, 0, 0, -589809, 0, 0, -589808, 0, 0, -589798, 0, 0, -589797, 0, 0, -589796, 1, 0, -589795, 1, 0, -589794, 1, 0, -589793, 0, 0, -589792, 1, 0, -589791, 1, 0, -589790, 0, 0, -589789, 0, 0, -589780, 1, 0, -589779, 1, 0, -589778, 1, 0, -589777, 1, 0, -589776, 1, 0, -524276, 0, 0, -524275, 1, 0, -524274, 1, 0, -524273, 0, 0, -524262, 0, 0, -524261, 0, 0, -524260, 1, 0, -524259, 1, 0, -524258, 1, 0, -524257, 1, 0, -524256, 1, 0, -524255, 0, 0, -524254, 0, 0, -524253, 0, 0, -524244, 1, 0, -524243, 1, 0, -524242, 1, 0, -524241, 1, 0, -524240, 1, 0, -458740, 1, 0, -458739, 1, 0, -458738, 1, 0, -458737, 0, 0, -458726, 0, 0, -458725, 0, 0, -458724, 1, 0, -458723, 0, 0, -458722, 0, 0, -458721, 0, 0, -458720, 1, 0, -458719, 0, 0, -458718, 0, 0, -458717, 0, 0, -458708, 1, 0, -458707, 1, 0, -458706, 1, 0, -458705, 1, 0, -458704, 1, 0, -393204, 1, 0, -393203, 1, 0, -393202, 1, 0, -393201, 0, 0, -393189, 0, 0, -393188, 1, 0, -393187, 1, 0, -393186, 0, 0, -393185, 1, 0, -393184, 1, 0, -393183, 0, 0, -393182, 0, 0, -393172, 1, 0, -393171, 1, 0, -393170, 1, 0, -393169, 1, 0, -393168, 1, 0, -327668, 0, 0, -327667, 1, 0, -327666, 1, 0, -327665, 0, 0, -327651, 1, 0, -327650, 1, 0, -327649, 0, 0, -327648, 0, 0, -327636, 1, 0, -327635, 1, 0, -327634, 1, 0, -327633, 1, 0, -327632, 1, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -262129, 0, 0, -262115, 0, 0, -262114, 0, 0, -262113, 0, 0, -262112, 1, 0, -262100, 1, 0, -262099, 1, 0, -262098, 1, 0, -262097, 1, 0, -262096, 1, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 1, 0, -196607, 0, 0, -196606, 1, 0, -196605, 1, 0, -196604, 0, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -196593, 0, 0, -196592, 0, 0, -196591, 0, 0, -196580, 0, 0, -196579, 0, 0, -196578, 1, 0, -196577, 0, 0, -196576, 0, 0, -196575, 0, 0, -196564, 1, 0, -196563, 1, 0, -196562, 1, 0, -196561, 1, 0, -196560, 1, 0, -65540, 0, 0, -65539, 0, 0, -65538, 1, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 1, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 1, 0, -131057, 0, 0, -131056, 0, 0, -131055, 0, 0, -131054, 0, 0, -131053, 0, 0, -131052, 0, 0, -131051, 0, 0, -131050, 0, 0, -131049, 0, 0, -131048, 0, 0, -131047, 1, 0, -131046, 1, 0, -131045, 0, 0, -131044, 0, 0, -131043, 0, 0, -131042, 0, 0, -131041, 0, 0, -131040, 0, 0, -131039, 0, 0, -131038, 0, 0, -131037, 0, 0, -131036, 0, 0, -131035, 0, 0, -131034, 0, 0, -131033, 0, 0, -131032, 0, 0, -131031, 0, 0, -131030, 1, 0, -131029, 1, 0, -131028, 1, 0, -131027, 1, 0, -131026, 1, 0, -131025, 1, 0, -131024, 1, 0, -4, 0, 0, -3, 1, 0, -2, 1, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 1, 0, -65525, 1, 0, -65524, 1, 0, -65523, 1, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 1, 0, -65516, 1, 0, -65515, 1, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, -65511, 1, 0, -65510, 1, 0, -65509, 1, 0, -65508, 1, 0, -65507, 1, 0, -65506, 1, 0, -65505, 1, 0, -65504, 1, 0, -65503, 0, 0, -65502, 1, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 1, 0, -65493, 1, 0, -65492, 1, 0, -65491, 1, 0, -65490, 1, 0, -65489, 1, 0, -65488, 1, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 1, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 0, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 31, 1, 0, 32, 1, 0, 33, 1, 0, 34, 1, 0, 35, 0, 0, 36, 1, 0, 37, 1, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 41, 0, 0, 42, 1, 0, 43, 1, 0, 44, 1, 0, 45, 1, 0, 46, 1, 0, 47, 1, 0, 48, 1, 0, 131068, 0, 0, 131069, 0, 0, 131070, 1, 0, 131071, 0, 0, 65536, 0, 0, 65537, 1, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 1, 0, 65552, 0, 0, 65553, 0, 0, 65563, 1, 0, 65564, 1, 0, 65565, 1, 0, 65566, 1, 0, 65567, 0, 0, 65568, 0, 0, 65569, 0, 0, 65570, 1, 0, 196605, 0, 0, 196606, 1, 0, 196607, 1, 0, 131072, 0, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131100, 0, 0, 131101, 1, 0, 131102, 1, 0, 131103, 1, 0, 131104, 0, 0, 131105, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196637, 0, 0, 196638, 0, 0, 196639, 1, 0, 196640, 0, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 0, 0, 262171, 0, 0, 262172, 0, 0, 262173, 0, 0, 262174, 0, 0, 262175, 0, 0, 262176, 0, 0, 262177, 0, 0, 262178, 0, 0, 327692, 0, 0, 327693, 1, 0, 327694, 1, 0, 327695, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327710, 1, 0, 327711, 1, 0, 327712, 1, 0, 327713, 0, 0, 327714, 0, 0, 327715, 0, 0, 393228, 0, 0, 393229, 1, 0, 393230, 1, 0, 393231, 0, 0, 393242, 0, 0, 393243, 0, 0, 393244, 1, 0, 393245, 1, 0, 393246, 1, 0, 393247, 1, 0, 393248, 1, 0, 393249, 0, 0, 393250, 0, 0, 393251, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 1, 0, 458767, 1, 0, 458768, 0, 0, 458778, 0, 0, 458779, 0, 0, 458780, 1, 0, 458781, 0, 0, 458782, 1, 0, 458783, 0, 0, 458784, 0, 0, 458785, 1, 0, 458786, 0, 0, 458787, 0, 0, 524299, 1, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524314, 0, 0, 524315, 1, 0, 524316, 1, 0, 524317, 1, 0, 524318, 1, 0, 524319, 1, 0, 524320, 1, 0, 524321, 1, 0, 524322, 0, 0, 524323, 0, 0, 589835, 1, 0, 589836, 0, 0, 589837, 1, 0, 589838, 0, 0, 589839, 1, 0, 589840, 0, 0, 589851, 0, 0, 589852, 0, 0, 589853, 0, 0, 589854, 0, 0, 589855, 0, 0, 589856, 0, 0, 589857, 0, 0, 589858, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0 )
 
-[node name="Camera2D" parent="." instance=ExtResource( 1 )]
+[node name="Camera2D" parent="." instance=ExtResource( 14 )]
 position = Vector2( 8, 0 )
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
@@ -286,6 +286,7 @@ position = Vector2( -201, -256 )
 position = Vector2( 872, 232 )
 
 [node name="Mur" type="TileMap" parent="."]
+modulate = Color( 1, 1, 1, 0.827451 )
 tile_set = SubResource( 7 )
 cell_size = Vector2( 16, 16 )
 cell_tile_origin = 2
@@ -317,6 +318,7 @@ position = Vector2( 626, -45 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Barreaux" type="TileMap" parent="YSort"]
+modulate = Color( 1, 1, 1, 0.513726 )
 rotation = -3.14159
 tile_set = SubResource( 4 )
 cell_size = Vector2( 16, 16 )
@@ -325,6 +327,7 @@ format = 1
 tile_data = PoolIntArray( -393232, 1, 0, -393229, 1, 0, 262111, 1, 0, 262112, 1, 0, 262113, 1, 0, 262114, 1, 0, 327631, 1, 0, 327635, 1, 0, 458736, 1, 0, 458739, 1, 0 )
 
 [node name="Miscellanous" type="TileMap" parent="YSort"]
+modulate = Color( 1, 1, 1, 0.513726 )
 tile_set = SubResource( 13 )
 cell_size = Vector2( 8, 8 )
 cell_tile_origin = 2
@@ -333,34 +336,38 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( -1441770, 4, 0, -1310665, 4, 0, -1310652, 4, 0, -1179616, 2, 0, -982986, 1, 0, -196615, 1, 0, 131065, 1, 0, 589880, 3, 0, 589891, 3, 0, 786501, 2, 0, 852022, 1, 0, 917526, 4, 0, 917573, 2, 0, 983071, 2, 0, 1114144, 2, 0 )
 
-[node name="Player" parent="YSort" instance=ExtResource( 7 )]
+[node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 8, 0 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
 
-[node name="NPC1" parent="YSort" instance=ExtResource( 14 )]
+[node name="NPC1" parent="YSort" instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0.827451 )
 position = Vector2( 182, -163 )
 id = 3
 
-[node name="NPC2" parent="YSort" instance=ExtResource( 14 )]
+[node name="NPC2" parent="YSort" instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0.827451 )
 position = Vector2( 182, 120 )
 id = 5
 
-[node name="NPC3" parent="YSort" instance=ExtResource( 14 )]
+[node name="NPC3" parent="YSort" instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0.827451 )
 position = Vector2( 116, -12 )
 id = 4
 
-[node name="Barrel" parent="YSort" instance=ExtResource( 15 )]
+[node name="Barrel" parent="YSort" instance=ExtResource( 11 )]
+modulate = Color( 1, 1, 1, 0.827451 )
 position = Vector2( 456, 133 )
-texture = ExtResource( 13 )
+texture = ExtResource( 7 )
 txt = "OBSERVER"
 event = "add_dia"
 event_args = [ 0, 7, 1, "remove_barrel_anim" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BlackRect" parent="CanvasLayer" instance=ExtResource( 2 )]
+[node name="BlackRect" parent="CanvasLayer" instance=ExtResource( 12 )]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 color = Color( 0, 0, 0, 0 )
@@ -374,7 +381,6 @@ position = Vector2( 743.25, -66.5 )
 shape = SubResource( 8 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 1, 1, 1, 0.501961 )
 
 [connection signal="body_entered" from="ToWorld" to="." method="_on_ToWorld_body_entered"]
 

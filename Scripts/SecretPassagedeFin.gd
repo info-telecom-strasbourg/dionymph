@@ -8,7 +8,7 @@ func _ready():
 
 
 func _on_NextArea_body_entered(body):
-	game.show_event_data(tr("ENTRER"), {"event":"change_world", "event_args":[preload("res://Graphics/Arcknot/Maison1.tscn"), 5]})
+	game.show_event_data(tr("ENTRER"), {"event":"change_world", "event_args":[preload("res://Maps/Arcknot/Maison1.tscn"), 5]})
 
 
 func _on_NextArea_body_exited(body):

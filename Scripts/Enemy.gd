@@ -17,6 +17,7 @@ enum{
 var velocity = Vector2.ZERO
 var knockback = Vector2.ZERO
 var can_attack:bool
+var direction:Vector2 = Vector2.RIGHT
 
 
 var state = CHASE
@@ -36,8 +37,30 @@ func _ready():
 	state = pick_random_state([IDLE, WANDER])
 
 func accelerate_towards_point(point, delta):
-	var direction = global_position.direction_to(point)
-	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+	var _direction = global_position.direction_to(point)
+	velocity = velocity.move_toward(_direction * MAX_SPEED, ACCELERATION * delta)
+	if velocity.x > 0:
+		if velocity.y > 0:
+			if velocity.y / velocity.x > 0.5:
+				direction = Vector2.DOWN
+			else:
+				direction = Vector2.RIGHT
+		elif velocity.y < 0:
+			if -velocity.y / velocity.x > 0.5:
+				direction = Vector2.UP
+			else:
+				direction = Vector2.RIGHT
+	elif velocity.x < 0:
+		if velocity.y > 0:
+			if velocity.y / velocity.x > 0.5:
+				direction = Vector2.DOWN
+			else:
+				direction = Vector2.LEFT
+		elif velocity.y < 0:
+			if -velocity.y / velocity.x > 0.5:
+				direction = Vector2.UP
+			else:
+				direction = Vector2.LEFT
 
 func update_wander():
 	state = pick_random_state([IDLE, WANDER])
@@ -97,10 +120,14 @@ func attack1():
 	$Attack1.monitorable = true
 	$Attack1.rotation = atan2(global_position.y - player.global_position.y, global_position.x - player.global_position.x) + PI
 	$Attack1/AnimationPlayer.play("Attack1Anim")
-	$Attack1/AnimationPlayer.connect("animation_finished", self, "on_anim_finished", [$Attack1/AnimationPlayer])
-	$Attack1.monitoring = false
-	$Attack1.monitorable = false
-	$AttackCooldown.start(1.0)
+	if direction in [Vector2.RIGHT, Vector2.LEFT]:
+		$AnimationPlayer.play("AttackRight")
+	elif direction == Vector2.UP:
+		$AnimationPlayer.play("AttackUp")
+	elif direction == Vector2.DOWN:
+		$AnimationPlayer.play("AttackDown")
+	if not $Attack1/AnimationPlayer.is_connected("animation_finished", self, "on_anim_finished"):
+		$Attack1/AnimationPlayer.connect("animation_finished", self, "on_anim_finished", [$Attack1/AnimationPlayer])
 
 func attack2():
 	yield(get_tree(), "idle_frame")

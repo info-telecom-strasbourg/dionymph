@@ -23,10 +23,10 @@ height = 6.0
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id=11]
-radius = 29.2005
+radius = 19.092
 
 [sub_resource type="CircleShape2D" id=12]
-radius = 50.0
+radius = 104.0
 
 [sub_resource type="Animation" id=13]
 length = 0.001
@@ -394,7 +394,6 @@ collision_mask = 2
 shape = SubResource( 11 )
 
 [node name="PlayerDetectionZone" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
