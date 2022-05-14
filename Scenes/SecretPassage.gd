@@ -5,6 +5,9 @@ onready var talk_node = game.get_node("Dialogue/Talk")
 onready var short_dia:Label = game.get_node("Dialogue/ShortDia")
 var dont_move = false
 
+func _ready():
+	$Aurelia/Sprite.hframes = 2
+	$Aurelia/AnimationPlayer.play("Aurelia")
 
 func _on_Teleport_body_entered(body):
 	body.position.x = 168

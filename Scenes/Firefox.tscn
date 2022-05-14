@@ -2,15 +2,15 @@
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/WhiteColorShader.tres" type="Shader" id=2]
-[ext_resource path="res://Scripts/Guard.gd" type="Script" id=3]
-[ext_resource path="res://Graphics/Player/hippo garde.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Player/firefox.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Firefox.gd" type="Script" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/active = false
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "AttackDown"
 length = 0.4
 tracks/0/type = "value"
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "values": [ 36, 37, 38, 39, 20 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "AttackRight"
 length = 0.4
 tracks/0/type = "value"
@@ -42,7 +42,7 @@ tracks/0/keys = {
 "values": [ 24, 25, 26, 27, 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "AttackUp"
 length = 0.4
 tracks/0/type = "value"
@@ -75,7 +75,7 @@ tracks/0/keys = {
 "values": [ 18, 19, 20, 21, 22, 23 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=6]
 resource_name = "MoveRight"
 length = 0.6
 loop = true
@@ -92,7 +92,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
 resource_name = "MoveUp"
 length = 0.6
 loop = true
@@ -109,47 +109,25 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9, 10, 11 ]
 }
 
-[node name="Guard" instance=ExtResource( 1 )]
-script = ExtResource( 3 )
+[node name="Firefox" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
 
 [node name="AnimatedSprite" parent="." index="0"]
 material = SubResource( 1 )
-position = Vector2( 1.34932, -0.369179 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 hframes = 60
 frame = 36
 
 [node name="Stats" parent="." index="2"]
-max_health = 3
-
-[node name="CollisionShape2D" parent="Hitbox" index="0"]
-disabled = true
-
-[node name="AttackZone" parent="." index="6"]
-visible = true
-
-[node name="Attack2" parent="." index="11"]
-visible = false
-
-[node name="attack3" parent="." index="12"]
-visible = false
-
-[node name="attack4" parent="." index="13"]
-visible = false
-
-[node name="Attack5" parent="." index="14"]
-visible = false
-
-[node name="attack7" parent="." index="15"]
-visible = false
+max_health = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="17"]
-anims/AttackDown = SubResource( 8 )
-anims/AttackRight = SubResource( 6 )
-anims/AttackUp = SubResource( 7 )
+anims/AttackDown = SubResource( 2 )
+anims/AttackRight = SubResource( 3 )
+anims/AttackUp = SubResource( 4 )
 anims/MoveDown = SubResource( 5 )
-anims/MoveRight = SubResource( 2 )
-anims/MoveUp = SubResource( 3 )
+anims/MoveRight = SubResource( 6 )
+anims/MoveUp = SubResource( 7 )
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

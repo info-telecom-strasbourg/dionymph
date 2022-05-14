@@ -11,13 +11,14 @@ enum{
 	IDLE,
 	WANDER, 
 	CHASE,
-	ATTACK
+	ATTACK,
 }
 
 var velocity = Vector2.ZERO
 var knockback = Vector2.ZERO
 var can_attack:bool
 var direction:Vector2 = Vector2.RIGHT
+var player_in_atk_zone = false
 
 
 var state = CHASE
@@ -39,25 +40,28 @@ func _ready():
 func accelerate_towards_point(point, delta):
 	var _direction = global_position.direction_to(point)
 	velocity = velocity.move_toward(_direction * MAX_SPEED, ACCELERATION * delta)
-	if velocity.x > 0:
-		if velocity.y > 0:
-			if velocity.y / velocity.x > 0.5:
+	update_direction(_direction)
+
+func update_direction(_dir):
+	if _dir.x > 0:
+		if _dir.y > 0:
+			if _dir.y / _dir.x > 0.5:
 				direction = Vector2.DOWN
 			else:
 				direction = Vector2.RIGHT
-		elif velocity.y < 0:
-			if -velocity.y / velocity.x > 0.5:
+		elif _dir.y < 0:
+			if -_dir.y / _dir.x > 0.5:
 				direction = Vector2.UP
 			else:
 				direction = Vector2.RIGHT
-	elif velocity.x < 0:
-		if velocity.y > 0:
-			if velocity.y / velocity.x > 0.5:
+	elif _dir.x < 0:
+		if _dir.y > 0:
+			if _dir.y / _dir.x > 0.5:
 				direction = Vector2.DOWN
 			else:
 				direction = Vector2.LEFT
-		elif velocity.y < 0:
-			if -velocity.y / velocity.x > 0.5:
+		elif _dir.y < 0:
+			if -_dir.y / _dir.x > 0.5:
 				direction = Vector2.UP
 			else:
 				direction = Vector2.LEFT
@@ -92,17 +96,18 @@ func _on_Stats_no_health():
 func _on_AttackZone_body_entered(body):
 	if can_attack:
 		state = ATTACK
+		player_in_atk_zone = true
 		randomizeAttack()
 
 
 func randomizeAttack():
 	if state == ATTACK:
 		attacks.shuffle()
+		update_direction(global_position.direction_to(player.global_position))
 		call_deferred(attacks[0])
 
 func _on_AttackZone_body_exited(body):
-	state = CHASE
-	
+	player_in_atk_zone = false
 
 
 func _on_PlayerDetectionZone_body_entered(body):
@@ -180,7 +185,10 @@ func attack7():
 
 
 func _on_AttackCooldown_timeout():
-	randomizeAttack()
+	if player_in_atk_zone:
+		randomizeAttack()
+	else:
+		state = CHASE
 
 func on_anim_finished(anim_name, node:AnimationPlayer, delay:float = 1.0):
 	node.disconnect("animation_finished", self, "on_anim_finished")

@@ -2,7 +2,7 @@ extends Enemy
 
 func _ready():
 	ACCELERATION = 500
-	MAX_SPEED = 40
+	MAX_SPEED = 50
 	FRICTION = 200
 	can_attack = true
 	attacks =["attack1"]

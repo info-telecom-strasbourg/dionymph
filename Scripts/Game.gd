@@ -12,15 +12,16 @@ onready var music_player = $AudioStreamPlayer
 var world_scene:Node2D
 
 func _ready():
+	TranslationServer.set_locale("fr")
 	if TEST:
 		remove_child($Menu)
 		$GameUI/HealthUI.visible = true
 		#change_world(preload("res://Maps/Arcknot/Ville_part1.tscn"), 1)
 		change_world(preload("res://Maps/passage_secret/SecretPassage1.tscn"), 4)
+		#change_world(preload("res://Maps/passage_secret/SecretPassage.tscn"), 1)
 		#world_scene.get_node("Teleport").monitoring = false
 	else:
 		switch_music(preload("res://Audio/Music/lullaby.ogg"))
-		TranslationServer.set_locale("fr")
 
 func _on_Menu_fade_menu():
 	$AnimationPlayer.play("MenuFade")
@@ -173,7 +174,7 @@ func show_event_data(txt:String, data:Dictionary):
 
 func hide_event_data():
 	event_data.clear()
-	if $Dialogue/Talk.modulate.a == 1.0:
+	if $Dialogue/Talk.modulate.a > 0.0:
 		$Dialogue/Talk/AnimationPlayer.play_backwards("TalkAnim")
 
 func open_chest():

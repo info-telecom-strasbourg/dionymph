@@ -398,6 +398,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionZone"]
+visible = false
 shape = SubResource( 12 )
 
 [node name="WanderController" parent="." instance=ExtResource( 1 )]
@@ -415,6 +416,7 @@ monitorable = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack1"]
+visible = false
 position = Vector2( 1.53857, -0.117985 )
 shape = SubResource( 16 )
 
@@ -430,6 +432,7 @@ monitorable = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2"]
+visible = false
 shape = SubResource( 19 )
 
 [node name="attack3" type="Area2D" parent="."]
@@ -440,6 +443,7 @@ monitorable = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack3"]
+visible = false
 position = Vector2( 41, 0 )
 shape = SubResource( 20 )
 
@@ -456,10 +460,12 @@ monitorable = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack4"]
+visible = false
 position = Vector2( 11.75, 0 )
 shape = SubResource( 23 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="attack4"]
+visible = false
 position = Vector2( 6.85594, 4.32837 )
 rotation = 0.523599
 shape = SubResource( 24 )
@@ -484,6 +490,7 @@ script = ExtResource( 8 )
 [node name="attack7" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="attack7"]
+visible = false
 polygon = PoolVector2Array( 0, 0, 11, -11, 11, 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="attack7"]
@@ -492,6 +499,7 @@ anims/Attack7animation = SubResource( 33 )
 anims/RESET = SubResource( 34 )
 
 [node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
